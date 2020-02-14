@@ -34,3 +34,8 @@ make news
 - [ ] causal discovery toolbox experiments
 - [ ] invariant causal prediciton experiments
 - [ ] move deconfounder repo to an experiment here
+
+## license
+
+This is a repo for playing with things, understanding libraries and experimenting.
+The code is currently **unlicensed**, and we accept no liability related to its use.
