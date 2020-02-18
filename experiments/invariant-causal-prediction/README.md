@@ -20,8 +20,8 @@ The (PDF) docs for the three stats packages are here:
 * [nonlinearICP](https://cran.r-project.org/web/packages/nonlinearICP/nonlinearICP.pdf)
 
 ## scripts
-* 1-linear-icp-churn.R - Trying InvariantCausalPrediction on the churn dataset, with Partner, Dependents and SeniorCitizen defining environments.
-* 2-nonlinear-icp-housing.R - nonlinearICP on california housing dataset, with lat and long defining environments.
-* 3-nonlinear-icp-bikesharing.R - nonlinearICP on bike sharing dataset. Environment split across time. Model rejected.
-* 4-linear-icp-churn-again.R - As first script, with more notes explaining what's going on. 
-* 5-linear-news-icp.R - ICP on news popularity dataset. Linear model rejected.
+1. 1-linear-icp-churn.R - Trying InvariantCausalPrediction on the churn dataset, with Partner, Dependents and SeniorCitizen defining environments.
+2. 2-nonlinear-icp-housing.R - nonlinearICP on california housing dataset, with lat and long defining environments.
+3. 3-nonlinear-icp-bikesharing.R - nonlinearICP on bike sharing dataset. Environment split across time. Model rejected.
+4. 4-linear-icp-churn-again.R - As first script, with more notes explaining what's going on. 
+5. 5-linear-news-icp.R - ICP on news popularity dataset. Linear model rejected.

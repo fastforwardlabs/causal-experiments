@@ -23,7 +23,10 @@ make news
 
 ## experiments
 
+* causal discovery - playing with the [CausalDiscoveryToolbox](https://github.com/FenTechSolutions/CausalDiscoveryToolbox)
+* invariant causal prediction - toying with the R libraries accompanying the papers [Causal inference using invariant prediction: identification and confidence intervals](https://arxiv.org/abs/1501.01332) and [Invariant Causal Prediction for Nonlinear Models](https://arxiv.org/abs/1706.08576)
 * invariant risk minimization - experiments around [Invariant Risk Minimization](https://arxiv.org/abs/1907.02893)
+
 
 ## todo
 
