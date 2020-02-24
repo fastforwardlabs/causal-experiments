@@ -59,7 +59,7 @@ X <- df %>% select(
 Y <- df$Churn
 
 E <- df %>%
-  mutate(env = as.factor(paste0(Partner, Dependents, SeniorCitizen))) %>%
+  mutate(env = as.factor(paste0(Partner, Dependents))) %>%
   select(env) %>% as_vector()
 
 churn_icp <- ICP(
@@ -70,14 +70,17 @@ churn_icp <- ICP(
 
 plot(churn_icp)
 
-nicp$retrievedCausalVars
-nicp$acceptedModels
-
 linear_model <- glm(Y ~ X-1, family = binomial(link='logit'))
 linear_model
 
 glm(
   Churn ~ PhoneService + DSL + FiberOptic + OnlineSecurity + OnlineBackup + DeviceProtection + TechSupport + StreamingTV + StreamingMovies + MonthlyBilling + OneYearBilling + TwoYearBilling + MonthlyCharges + tenure - 1,
+  data = df,
+  family = binomial
+)
+
+glm(
+  Churn ~ PhoneService + DSL + FiberOptic + OnlineSecurity + TechSupport + MonthlyBilling + MonthlyCharges + tenure - 1,
   data = df,
   family = binomial
 )
