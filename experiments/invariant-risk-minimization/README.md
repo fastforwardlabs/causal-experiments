@@ -11,6 +11,10 @@ From inside a suitable python 3.7 virtual environment:
 pip install -r requirements.txt
 ```
 
+## package
+
+The code has currently been adopted from Facebook's code repo - [InvariantRiskMinimization](https://github.com/facebookresearch/InvariantRiskMinimization)
+
 ## notebooks
 
 Run the notebooks with `jupyter lab` from a virtual env with the dependencies installed.
