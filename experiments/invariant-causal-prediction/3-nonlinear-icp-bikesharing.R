@@ -2,7 +2,7 @@ library(tidyverse)
 library(nonlinearICP)
 library(InvariantCausalPrediction)
 
-bike_df <- read_csv('../../data/Bike-Sharing-Dataset/day.csv')
+bike_df <- read_csv('../../data/Bike-Sharing-Dataset/day.csv') %>% filter(yr = 0)
 head(bike_df)
 
 X <- bike_df %>%
@@ -25,7 +25,7 @@ X <- bike_df %>%
 
 Y <- bike_df$cnt
 
-E <- as.factor(lubridate::year(bike_df$dteday))
+E <- as.factor(bike_df$season)
 
 bike_nicp <- nonlinearICP(
   X = X,
