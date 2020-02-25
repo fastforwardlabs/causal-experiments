@@ -33,9 +33,9 @@ make news
 "Doing" an experiment in this case means making the code Chris wrote runnable (so, providing reqs file, adding make target for data etc.)
 
 - [x] invariant risk minimization experiments
-- [ ] dowhy experiments
-- [ ] causal discovery toolbox experiments
-- [ ] invariant causal prediciton experiments
+- [x] dowhy experiments
+- [x] causal discovery toolbox experiments
+- [x] invariant causal prediciton experiments
 - [ ] move deconfounder repo to an experiment here
 
 ## license
