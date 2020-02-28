@@ -38,7 +38,9 @@ class resnet18_extractor(nn.Module):
             param.requires_grad = False
         # newly constructed modules have requires_grad=True by default
         num_ftrs = resnet18.fc.in_features
-        self.fc = nn.Linear(num_ftrs, n_classes)
+        #self.fc = nn.Linear(num_ftrs, n_classes)
+        self.fc = nn.Linear(num_ftrs, 1)
+        
 
     def forward(self, x):
         x = self.model(x)

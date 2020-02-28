@@ -94,7 +94,7 @@ def create_nparray(dataset, dataroot, processedroot, overwrite=False):
     return images, labels
 
 def get_WildCam(overwrite=False):
-    dataroot='../../../data/wildcam_subset'
+    dataroot='../../../data/wildcam_subset_sample'
     processedroot = str.join('/', [dataroot, 'processed'])
     if not os.path.exists(processedroot):
         os.mkdir(os.path.join(processedroot))

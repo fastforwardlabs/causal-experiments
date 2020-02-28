@@ -2,6 +2,8 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 import torch.optim as optim
+
+from torch import autograd
 from torch.utils.data import DataLoader
 from collections import Counter
 
@@ -25,9 +27,27 @@ class Train:
     def get_distribution(self):
         return self.class_distribution
     
+    # Define loss function helpers
+    def mean_nll(self, logits, y):
+        return F.binary_cross_entropy_with_logits(logits, y)
+
+    def mean_accuracy(self, logits, y):
+        preds = (logits > 0.).float()
+        return ((preds - y).abs() < 1e-2).float().mean()
+
+    def penalty(self, logits, y):
+        scale = torch.tensor(1.).cuda().requires_grad_()
+        loss = self.mean_nll(logits * scale, y)
+        grad = autograd.grad(loss, [scale], create_graph=True)[0]
+        return torch.sum(grad**2)
+   
     def _train(self, epoch, loader_tr, optimizer):
         self.clf.train()
-        total_loss = 0
+        total_loss = 0 
+        nll = 0 
+        acc = 0 
+        penalty = 0
+        num_batches = 0.0
         for batch_idx, (x, y, idxs) in enumerate(loader_tr):
             """
             print('_train x shape {}'.format(x.shape))
@@ -36,13 +56,86 @@ class Train:
             x, y = x.to(self.device), y.to(self.device)
             optimizer.zero_grad()
             out, e1 = self.clf(x)
-            # print('output shape {}'.format(out.shape))
-            loss = F.cross_entropy(out, y)
+            #print('output shape {}'.format(out.shape))
+            #print('output[0] {}'.format(out[0]))
+            #print('target shape {}'.format(y.shape))
+            #print('target[0] {}'.format(y[0].float()))
+            
+            y.resize_((y.shape[0], 1))
+            train_nll = self.mean_nll(out, y.float())
+            train_acc = self.mean_accuracy(out, y.float())
+            train_penalty = self.penalty(out, y.float())
+            
+            nll += train_nll.detach().cpu().numpy()
+            acc += train_acc.detach().cpu().numpy()
+            penalty += train_penalty.detach().cpu().numpy()
+            num_batches += 1.0
+            #print('nll {}'.format(nll), 'acc {}'.format(acc), 'penalty {}'.format(penalty))
+            
+            loss = F.binary_cross_entropy_with_logits(out, y.float())
             total_loss += loss.cpu().item()
             loss.backward()
             optimizer.step()
             
-        return total_loss/len(loader_tr)
+            #print(type(nll.mean().detach().cpu().numpy()))
+        #print("train acc: ", acc)
+        #print("train num_batches: ", num_batches)  
+        
+        return total_loss/len(loader_tr), nll/len(loader_tr), acc/num_batches, penalty/len(loader_tr)
+
+    def _train_irm(self, epoch, loader_tr, optimizer):
+        self.clf.train()
+        total_loss = 0 
+        nll = 0 
+        acc = 0 
+        penalty = 0
+        for batch_idx, (x, y, idxs) in enumerate(loader_tr):
+            """
+            print('_train x shape {}'.format(x.shape))
+            print('_train y shape {}'.format(y.shape))
+            """
+            x, y = x.to(self.device), y.to(self.device)
+            optimizer.zero_grad()
+            out, e1 = self.clf(x)
+            #print('output shape {}'.format(out.shape))
+            #print('output[0] {}'.format(out[0]))
+            #print('target shape {}'.format(y.shape))
+            #print('target[0] {}'.format(y[0].float()))
+            
+            y.resize_((y.shape[0], 1))
+            
+            train_nll = self.mean_nll(out, y.float())
+            train_acc = self.mean_accuracy(out, y.float())
+            train_penalty = self.penalty(out, y.float())
+            
+            nll += train_nll.detach().cpu().numpy()
+            acc += train_acc.detach().cpu().numpy()
+            penalty += train_penalty.detach().cpu().numpy()
+            
+            #print('nll {}'.format(nll), 'acc {}'.format(acc), 'penalty {}'.format(penalty))
+            
+            #loss = F.binary_cross_entropy_with_logits(out, y.float())
+            loss = train_nll.clone()
+            
+            weight_norm = torch.tensor(0.).cuda()
+            # since feature extraction
+            for w in self.clf.fc.parameters():
+                weight_norm += w.norm().pow(2)
+
+            #loss = train_nll.clone()
+            loss += self.args['optimizer_args']['l2_regularizer_weight'] * weight_norm
+            penalty_weight = (self.args['optimizer_args']['penalty_weight'] if epoch >= self.args['optimizer_args']['penalty_anneal_iters'] else 1.0)
+            loss += penalty_weight * train_penalty
+            if penalty_weight > 1.0:
+                # Rescale the entire loss to keep gradients in a reasonable range
+                loss /= penalty_weight
+            
+            total_loss += loss.cpu().item()
+            
+            loss.backward()
+            optimizer.step()
+            
+        return total_loss/len(loader_tr), nll/len(loader_tr), acc/len(loader_tr), penalty/len(loader_tr)
     
     def predict(self, X, Y):
         loader_te = DataLoader(self.handler(X, Y,
@@ -59,7 +152,8 @@ class Train:
                 """
                 x, y = x.to(self.device), y.to(self.device)
                 out, e1 = self.clf(x)
-                loss = F.cross_entropy(out, y)
+                y.resize_((y.shape[0], 1))
+                loss = F.binary_cross_entropy_with_logits(out, y.float())
                 total_loss += loss.cpu().item()
                 pred = out.max(1)[1]
                 if str(self.device) == 'cuda':
@@ -74,21 +168,24 @@ class Train:
                                             transform=self.args['transform']['test']),
                                shuffle=True, **self.args['loader_te_args'])
         self.clf.eval()
-        num_correct, num_samples = 0, 0
+        accuracy = 0
+        num_batches = 0.0
         
         for x, y, idxs in loader:
             x, y = x.to(self.device), y.to(self.device)
-                
+            
             scores, e1 = self.clf(x)
-            _, preds = scores.data.cpu().max(1)
-            if str(self.device) == 'cuda':
-                y = y.cpu()
-            num_correct += (preds == y).sum()
-            num_samples += x.size(0)
-        
+            #print("scores: ", scores)
+            y.resize_((y.shape[0], 1))
+            #print("y: ", y.float())
+            acc = self.mean_accuracy(scores, y.float())
+            accuracy += acc.detach().cpu().numpy()
+            num_batches += 1.0
         # Return the fraction of datapoints that were correctly classified.
-        acc = float(num_correct) / num_samples
-        return acc        
+        # print("acc: ", accuracy)
+        # print("num_batches: ", num_batches)  
+
+        return accuracy/num_batches        
         
     def train(self):
         n_epoch = self.args['n_epoch']
@@ -98,7 +195,7 @@ class Train:
         if self.args['fc_only']:
             # for feature extraction using transfer learn
             print("feature extraction")
-            optimizer = optim.SGD(self.clf.fc.parameters(), **self.args['optimizer_args'])
+            optimizer = optim.SGD(self.clf.fc.parameters(), self.args['optimizer_args']['lr'])
             #optimizer = optim.Adam(self.clf.fc.parameters(), betas=(0.9,0.99), lr=0.00005)
         else:
             optimizer = optim.SGD(self.clf.parameters(), **self.args['optimizer_args'])
@@ -111,16 +208,20 @@ class Train:
                                             transform=self.args['transform']['train']),
                                shuffle=True,
                                **self.args['loader_tr_args'])
-        print("epoch\ttrain_loss\ttest_loss\ttrain_acc\ttest_acc")
+        print("epoch\ttrain loss\ttrain nll\ttrain penalty\ttrain acc\ttest loss\ttest acc")
         for epoch in range(1, n_epoch+1):
-            # print("epoch {}".format(epoch))
-            train_loss = self._train(epoch, loader_tr, optimizer)
+            if self.args['mode'] == 'IRM':
+                train_loss, train_nll, train_acc, train_penalty = self._train_irm(epoch, loader_tr, optimizer)
+            else:
+                train_loss, train_nll, train_acc, train_penalty = self._train(epoch, loader_tr, optimizer)
+            
             _, test_loss = self.predict(self.X_te, self.Y_te)
             
-            train_acc = self.check_accuracy(self.X, self.Y)
+            #train_acc = self.check_accuracy(self.X, self.Y)
             test_acc = self.check_accuracy(self.X_te, self.Y_te)
-            print("{}\t{}\t\t{}\t\t{}\t\t{}".format(epoch, round(train_loss, 4), round(test_loss, 4), 
-                                          round(train_acc, 6), round(test_acc, 6)))
+            print("{}\t{}\t\t{}\t\t{}\t\t{}\t\t{}\t\t{}".format(epoch, round(train_loss, 4), round(train_nll, 4),
+                                                                round(train_penalty, 4), round(train_acc, 4), 
+                                                                round(test_loss, 4), round(test_acc, 4)))
 
     def sample_embeddings(self, q_idxs):
         # extract embeddings for samples indexed by q_idxs
