@@ -19,10 +19,10 @@ if __name__ == "__main__":
     
     args_pool = {
         'WILDCAM': {
-            'n_epoch': 10,
+            'n_epoch': 20,
             'n_classes': 2,
             'fc_only': True,
-            'model_path': "/home/shioulin/active-learning/deep-active/caltech_model.pth",
+            'model_path': "./",
             'transform': {
                 'train': transforms.Compose([transforms.CenterCrop(224),
                                              transforms.ToTensor(),
@@ -46,15 +46,16 @@ if __name__ == "__main__":
             'optimizer_args': {
                 'lr': 0.001,
                 'l2_regularizer_weight': 0.001,
-                'penalty_anneal_iters': 2,
-                'penalty_weight': 10.0
+                'penalty_anneal_iters': 10,
+                'penalty_weight': 5.0
             },
             'mode': 'IRM'  #training mode - IRM or ERM
         }
     }
        
     args = args_pool[dataset_name]
-
+    print(args)
+    
     np.random.seed(seed)
     torch.manual_seed(seed)
     
