@@ -19,7 +19,8 @@ if __name__ == "__main__":
     
     args_pool = {
         'WILDCAM': {
-            'n_epoch': 20,
+            'n_restarts': 1,
+            'steps': 51,
             'n_classes': 2,
             'fc_only': True,
             'model_path': "./",
@@ -46,14 +47,18 @@ if __name__ == "__main__":
             'optimizer_args': {
                 'lr': 0.001,
                 'l2_regularizer_weight': 0.001,
-                'penalty_anneal_iters': 10,
-                'penalty_weight': 5.0
-            },
-            'mode': 'IRM'  #training mode - IRM or ERM
+                'penalty_anneal_iters': 10, # make this 0 for ERM
+                'penalty_weight': 3.0 # make this 0 for ERM
+            }
         }
     }
        
     args = args_pool[dataset_name]
+    print("\n")
+    if args['optimizer_args']['penalty_weight'] > 1.0:
+        print("====================IRM====================")
+    else:
+        print("====================ERM====================")
     print(args)
     
     np.random.seed(seed)
@@ -61,15 +66,29 @@ if __name__ == "__main__":
     
     # load dataset
     x_train, y_train, x_test, y_test = get_dataset(dataset_name)
+    
     print("x_train: ", len(x_train))
     print("y_train: ", y_train.shape)
     print("x_test: ", len(x_test))
     print("y_test: ", y_test.shape)
     
-    # get model
+    # get model and data handler
     net = get_net(dataset_name)
     handler = get_handler(dataset_name)
-    #torch.backends.cudnn.enabled = True
+    
+    # GPU enabled?
     print("Using GPU - {}".format(torch.cuda.is_available()))
-    train_process = Train(x_train, y_train, x_test, y_test, net, handler, args)
-    train_process.train()
+    
+    final_train_accs = []
+    final_test_accs = []
+    for restart in range(args['n_restarts']):
+        train_process = Train(x_train, y_train, x_test, y_test, net, handler, args)
+        train_acc, test_acc = train_process.train()
+        final_train_accs.append(train_acc)
+        final_test_accs.append(test_acc)
+            
+        print('Final train acc (mean/std across restarts so far):')
+        print(round(np.mean(final_train_accs), 4), round(np.std(final_train_accs), 4))
+        print('Final test acc (mean/std across restarts so far):')
+        print(round(np.mean(final_test_accs), 4), round(np.std(final_test_accs), 4))
+

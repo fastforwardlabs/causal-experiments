@@ -48,6 +48,13 @@ find /home/nisha/causal-experiments/data/wildcam_subset/train/raccoon/ -maxdepth
 cp -r /home/nisha/causal-experiments/data/wildcam_subset/valid /home/nisha/causal-experiments/data/wildcam_subset_sample
 ```
 
+**Alternately, you could skip all the data steps and use data on elephant located at /datapool/wildcam**
+
+```
+$ ls /datapool/wildcam
+iWildCam wildcam_subset  wildcam_subset_sample
+```
+
 ## Environment setup
 
 ```
@@ -65,13 +72,9 @@ conda install nb_conda
 
 ## Programs
 
-* dataset.py
+* dataset.py - change datapaths, if you are using data from elephant - /datapool/wildcam/wildcam_subset or wildcam_subset_sample
 * models.py
 * main.py - entry point
 * train.py
 
 * main_mnist.py - code from the IRM research paper
-
-## To-do
-
-In the original paper code, the penalty is added every 100 steps/ epochs. The current code starts adding penalty_weight after some "n" epochs for every epoch. Once added the modified loss penalty should stay as is for a few epochs before being updated.
