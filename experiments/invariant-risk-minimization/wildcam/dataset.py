@@ -11,7 +11,7 @@ import errno
 
 def get_dataset(name):
     if name == 'WILDCAM':
-        return get_WildCam()
+        return get_WildCam(overwrite=True)
     
 class WildCamFolder(Dataset):
     '''
@@ -34,6 +34,9 @@ class WildCamFolder(Dataset):
         img=str.join('/',[self.all_items[index][2],filename])
         target=self.all_items[index][1] #self.idx_classes[self.all_items[index][1]]
 
+        if self.transform is not None:
+            img = self.transform(img)
+            
         if self.target_transform is not None:
             target = self.target_transform(target)
         return  img, target
@@ -69,7 +72,8 @@ def create_nparray(dataset, dataroot, processedroot, overwrite=False):
     processedroot - where to save the nparray
     overwrite - whether to overwrite the existing numpy array, default false
     """
-    if not os.path.isfile(os.path.join(processedroot, dataset, 'images.npy')) or overwrite:
+    #if not os.path.isfile(os.path.join(processedroot, dataset, 'images.npy')) or overwrite:
+    if overwrite:
         print(str.join('/', [dataroot, dataset]))
         x = WildCamFolder(str.join('/', [dataroot, dataset]))
         images = []
@@ -82,12 +86,12 @@ def create_nparray(dataset, dataroot, processedroot, overwrite=False):
         
         if not os.path.exists(os.path.join(processedroot, dataset)):
             os.mkdir(os.path.join(processedroot, dataset))
-        if overwrite:
-            if os.path.isfile(os.path.join(processedroot, dataset, 'images.npy')):
-                os.remove(os.path.join(processedroot, dataset, 'images.npy'))
-                os.remove(os.path.join(processedroot, dataset, 'labels.npy'))
-            np.save(os.path.join(processedroot, dataset, 'images.npy'), images)
-            np.save(os.path.join(processedroot, dataset, 'labels.npy'), labels)
+
+        if os.path.isfile(os.path.join(processedroot, dataset, 'images.npy')):
+            os.remove(os.path.join(processedroot, dataset, 'images.npy'))
+            os.remove(os.path.join(processedroot, dataset, 'labels.npy'))
+        np.save(os.path.join(processedroot, dataset, 'images.npy'), images)
+        np.save(os.path.join(processedroot, dataset, 'labels.npy'), labels)
     else:
         images = np.load(os.path.join(processedroot, dataset, 'images.npy'))
         labels = np.load(os.path.join(processedroot, dataset, 'labels.npy'))
@@ -135,12 +139,13 @@ class WildCamHandler(Dataset):
     def __init__(self, X, Y, transform=None):
         self.X = X
         self.Y = Y
+        #resize_img = transforms.Compose([transforms.Resize((256, 256))])    
         self.transform = transform
 
     def __getitem__(self, index):
         x, y = self.X[index], self.Y[index]
         # If there are some gray/ single channel images
-        x = Image.open(x).convert('RGB')
+        x = Image.open(x).convert('RGB').resize((256, 256))
         if self.transform is not None:
             #x = Image.fromarray(x)
             x = self.transform(x)

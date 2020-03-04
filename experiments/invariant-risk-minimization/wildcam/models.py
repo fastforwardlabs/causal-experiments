@@ -8,8 +8,8 @@ def get_net(name):
     if name == 'WILDCAM':
         # return Resnet18
         # return Net4
-        # return resnet18_transfer
-        return resnet18_extractor
+        return resnet18_transfer
+        # return resnet18_extractor
 
 class resnet18_transfer(nn.Module):
     def __init__(self, n_classes=2):
@@ -17,7 +17,9 @@ class resnet18_transfer(nn.Module):
         image_modules = list(resnet18.children())[:-1]
         self.model = nn.Sequential(*image_modules)
         num_ftrs = resnet18.fc.in_features
-        self.fc = nn.Linear(num_ftrs, n_classes)
+        #self.fc = nn.Linear(num_ftrs, n_classes)
+        self.fc = nn.Linear(num_ftrs, 1)
+        
 
     def forward(self, x):
         x = self.model(x)

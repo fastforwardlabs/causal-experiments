@@ -70,6 +70,16 @@ conda install -c conda-forge matplotlib
 conda install nb_conda
 ```
 
+For Lime explanations - recreate the environment with python 2.7
+
+```
+conda install -c conda-forge lime
+conda install scikit-learn
+conda install scikit-image
+conda install -c conda-forge progressbar #2 - this doesn't work
+```
+
+
 ## Programs
 
 * dataset.py - change datapaths, if you are using data from elephant - /datapool/wildcam/wildcam_subset or wildcam_subset_sample

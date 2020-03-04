@@ -63,9 +63,14 @@ class Train:
             loss = train_nll.clone()
             
             weight_norm = torch.tensor(0.).cuda()
+            
             # since feature extraction
-            for w in self.clf.fc.parameters():
-                weight_norm += w.norm().pow(2)
+            if self.args['fc_only']:
+                for w in self.clf.fc.parameters():
+                    weight_norm += w.norm().pow(2)
+            else:
+                for w in self.clf.parameters():
+                    weight_norm += w.norm().pow(2)                
 
             #loss = train_nll.clone()
             loss += self.args['optimizer_args']['l2_regularizer_weight'] * weight_norm
@@ -136,7 +141,7 @@ class Train:
             optimizer = optim.SGD(self.clf.fc.parameters(), self.args['optimizer_args']['lr'])
             #optimizer = optim.Adam(self.clf.fc.parameters(), betas=(0.9,0.99), lr=0.00005)
         else:
-            optimizer = optim.SGD(self.clf.parameters(), **self.args['optimizer_args'])
+            optimizer = optim.SGD(self.clf.parameters(), self.args['optimizer_args']['lr'])
             
         loader_tr = DataLoader(self.handler(self.X,
                                             self.Y,
