@@ -6,18 +6,25 @@ import torch.optim as optim
 from torch import autograd
 from torch.utils.data import DataLoader
 from collections import Counter
+    
+def pretty_print(*values):
+    col_width = 13
+    def format_val(v):
+        if not isinstance(v, str):
+            v = np.array2string(v, precision=5, floatmode='fixed')
+        return v.ljust(col_width)
+    str_values = [format_val(v) for v in values]
+    print("   ".join(str_values))    
 
+        
 class Train:
-    def __init__(self, X, Y, X_te, Y_te, net, handler, args):
-        self.X = X
-        self.Y = Y
+    def __init__(self, envs, X_te, Y_te, net, handler, args):
+        self.envs = envs
         self.X_te = X_te
         self.Y_te = Y_te
         self.net = net
         self.handler = handler
         self.args = args
-        self.n_pool = len(Y)
-        self.class_distribution = {}
         use_cuda = torch.cuda.is_available()
         self.device = torch.device("cuda" if use_cuda else "cpu")
 
@@ -103,7 +110,7 @@ class Train:
                 out, e1 = self.clf(x)
                 y.resize_((y.shape[0], 1))
                 loss = F.binary_cross_entropy_with_logits(out, y.float())
-                total_loss += loss.cpu().item()
+                total_loss += loss #.cpu().item()
                 pred = out.max(1)[1]
                 if str(self.device) == 'cuda':
                     P[idxs] = pred.cpu()
@@ -128,41 +135,86 @@ class Train:
             y.resize_((y.shape[0], 1))
             #print("y: ", y.float())
             acc = self.mean_accuracy(scores, y.float())
-            accuracy += acc.detach().cpu().numpy()
+            accuracy += acc #.detach().cpu().numpy()
             num_batches += 1.0
         return accuracy/num_batches        
-        
+
     def train(self):        
         n_classes = self.args['n_classes']
         self.clf = self.net(n_classes=n_classes).to(self.device)
-        if self.args['fc_only']:
-            # for feature extraction using transfer learn
+        if self.args['fc_only']: # feature extraction
             print("feature extraction")
             optimizer = optim.SGD(self.clf.fc.parameters(), self.args['optimizer_args']['lr'])
-            #optimizer = optim.Adam(self.clf.fc.parameters(), betas=(0.9,0.99), lr=0.00005)
         else:
             optimizer = optim.SGD(self.clf.parameters(), self.args['optimizer_args']['lr'])
+        
+        pretty_print('step', 'train nll', 'train acc', 'train penalty', 'test nll', 'test acc')
+
+        for step in range(self.args['steps']):  
+            for env in self.envs:
+                x = env['images']
+                y = env['labels']
+                loader_tr = DataLoader(self.handler(x, y, transform=self.args['transform']['train']), 
+                                       shuffle=True, **self.args['loader_tr_args'])
+                self.clf.train()
+                nll = acc = penalty = 0.0
+                for batch_idx, (x, y, idxs) in enumerate(loader_tr):
+                    x, y = x.to(self.device), y.to(self.device)
+                    optimizer.zero_grad()
+                    logits, e = self.clf(x)
             
-        loader_tr = DataLoader(self.handler(self.X,
-                                            self.Y,
-                                            transform=self.args['transform']['train']),
-                               shuffle=True,
-                               **self.args['loader_tr_args'])
-        print("step\ttrain loss\ttrain nll\ttrain penalty\ttrain acc\ttest loss\ttest acc")
-        train_acc = 0.0
-        test_acc = 0.0
-        for step in range(self.args['steps']):   
-            train_loss, train_nll, train_acc, train_penalty = self._train_irm(step, loader_tr, optimizer)           
+                    y.resize_((y.shape[0], 1))
+                    train_nll = self.mean_nll(logits, y.float())
+                    train_acc = self.mean_accuracy(logits, y.float())
+                    train_penalty = self.penalty(logits, y.float())
+                    
+                    nll += train_nll
+                    acc += train_acc
+                    penalty += train_penalty
+                    '''
+                    nll += temp_nll.detach().cpu().numpy()
+                    acc += train_acc.detach().cpu().numpy()
+                    penalty += train_penalty.detach().cpu().numpy()
+                    '''
+                env['nll'] = nll / len(loader_tr)
+                env['acc'] = acc / len(loader_tr)
+                env['penalty'] = penalty / len(loader_tr)
+            '''   
+            train_nll = np.stack([self.envs[0]['nll'], self.envs[1]['nll'], self.envs[2]['nll'], self.envs[3]['nll']]).mean()
+            train_acc = np.stack([self.envs[0]['acc'], self.envs[1]['acc'], self.envs[2]['acc'], self.envs[3]['acc']]).mean()
+            train_penalty = np.stack([self.envs[0]['penalty'], self.envs[1]['penalty'], 
+            self.envs[2]['penalty'], self.envs[3]['penalty']]).mean()
+            '''
+            train_nll = torch.stack([self.envs[0]['nll'], self.envs[1]['nll'], self.envs[2]['nll'], self.envs[3]['nll']]).mean()
+            train_acc = torch.stack([self.envs[0]['acc'], self.envs[1]['acc'], self.envs[2]['acc'], self.envs[3]['acc']]).mean()
+            train_penalty = torch.stack([self.envs[0]['penalty'], self.envs[1]['penalty'], 
+                                         self.envs[2]['penalty'], self.envs[3]['penalty']]).mean()
+            weight_norm = torch.tensor(0.).cuda()
+            
+            if self.args['fc_only']:
+                for w in self.clf.fc.parameters():
+                    weight_norm += w.norm().pow(2)
+            else:
+                for w in self.clf.parameters():
+                    weight_norm += w.norm().pow(2)     
+            
+            loss = train_nll.clone()
+            loss += self.args['optimizer_args']['l2_regularizer_weight'] * weight_norm
+            penalty_weight = (self.args['optimizer_args']['penalty_weight'] 
+                              if step >= self.args['optimizer_args']['penalty_anneal_iters'] else 1.0)
+            loss += penalty_weight * train_penalty
+            if penalty_weight > 1.0:
+                # Rescale the entire loss to keep gradients in a reasonable range
+                loss /= penalty_weight
+
+            loss.backward()
+            optimizer.step()
+            
             _, test_loss = self.predict(self.X_te, self.Y_te)            
-            
             test_acc = self.check_accuracy(self.X_te, self.Y_te)
-            
-            # calculate mean value - accuracy, nll, penalty
-            if step % 10 == 0:                
-                print("{}\t{}\t\t{}\t\t{}\t\t{}\t\t{}\t\t{}".format(step, round(train_loss, 4), 
-                                                                    round(train_nll, 4),
-                                                                    round(train_penalty, 4), 
-                                                                    round(train_acc, 4),
-                                                                    round(test_loss, 4), 
-                                                                    round(test_acc, 4)))
+            if step % 10 == 0:                 
+                pretty_print(np.int32(step), train_nll.detach().cpu().numpy(), 
+                             train_acc.detach().cpu().numpy(), train_penalty.detach().cpu().numpy(), 
+                             test_loss.detach().cpu().numpy(), test_acc.detach().cpu().numpy())
+                
         return train_acc, test_acc

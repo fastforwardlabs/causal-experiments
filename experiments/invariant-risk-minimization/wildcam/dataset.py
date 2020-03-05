@@ -102,34 +102,37 @@ def get_WildCam(overwrite=False):
     processedroot = str.join('/', [dataroot, 'processed'])
     if not os.path.exists(processedroot):
         os.mkdir(os.path.join(processedroot))
-    X_tr, Y_tr = create_nparray('train', dataroot, processedroot, overwrite)
-    print(sorted(set(list(Y_tr))))
-    print(X_tr[1:5])
-    X_te, Y_te = create_nparray('valid', dataroot, processedroot, overwrite)
+    env_list = [43, 46, 88, 130]
+    envs = []
+    for env in env_list:
+        dataset_name = 'train' + '_' + str(env)
+        X_tr, Y_tr = create_nparray(dataset_name, dataroot, processedroot, overwrite)
+        print("train environment: ", env)
+        print(sorted(set(list(Y_tr))))
+        print(X_tr[1:5])
+        class_indices = []
+        for x in enumerate(sorted(set(list(Y_tr)))):
+            class_indices.append(x)
+        print("class_indices: ", class_indices)
+        Y_tr_upd = np.empty(len(Y_tr), dtype=int)
+        for i, x in enumerate(list(Y_tr)):
+            index = [i for i, y in enumerate(class_indices) if y[1] == x]
+            Y_tr_upd[i] = int(index[0])
+        Y_tr = torch.from_numpy(Y_tr_upd)
+        envs.append({'images': X_tr, 'labels': Y_tr})
+    
+    X_te, Y_te = create_nparray('test', dataroot, processedroot, overwrite)
     print(sorted(set(list(Y_te))))
     print(X_te[1:5])
     # Making sure that the class indices are consistent across train and valid sets
     
-    class_indices = []
-    for x in enumerate(sorted(set(list(Y_tr)))):
-        class_indices.append(x)
-    print("class_indices: ", class_indices)
-    Y_tr_upd = np.empty(len(Y_tr), dtype=int)
-    for i, x in enumerate(list(Y_tr)):
-        index = [i for i, y in enumerate(class_indices) if y[1] == x]
-        Y_tr_upd[i] = int(index[0])
-
     Y_te_upd = np.empty(len(Y_te), dtype=int)
     for i, x in enumerate(list(Y_te)):
         index = [i for i, y in enumerate(class_indices) if y[1] == x]
         Y_te_upd[i] = int(index[0])
-
-    #X_tr = torch.from_numpy(X_tr)
-    Y_tr = torch.from_numpy(Y_tr_upd)
-    #X_te = torch.from_numpy(X_te)
     Y_te = torch.from_numpy(Y_te_upd)
     
-    return X_tr, Y_tr, X_te, Y_te
+    return envs, X_te, Y_te
 
 def get_handler(name):
     if name == 'WILDCAM':

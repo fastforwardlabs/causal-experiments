@@ -6,10 +6,8 @@ resnet18 = models.resnet18(pretrained=True)
 
 def get_net(name):
     if name == 'WILDCAM':
-        # return Resnet18
-        # return Net4
-        return resnet18_transfer
-        # return resnet18_extractor
+        # return resnet18_transfer
+        return resnet18_extractor
 
 class resnet18_transfer(nn.Module):
     def __init__(self, n_classes=2):
