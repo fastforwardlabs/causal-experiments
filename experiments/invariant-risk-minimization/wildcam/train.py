@@ -98,7 +98,7 @@ class Train:
                                             transform=self.args['transform']['test']),
                                shuffle=True, **self.args['loader_te_args'])
         self.clf.eval()
-        total_loss = 0
+        total_loss = nll = acc = 0.0
         P = torch.zeros(len(Y), dtype=Y.dtype)
         with torch.no_grad():
             for x, y, idxs in loader_te:
@@ -109,15 +109,23 @@ class Train:
                 x, y = x.to(self.device), y.to(self.device)
                 out, e1 = self.clf(x)
                 y.resize_((y.shape[0], 1))
-                loss = F.binary_cross_entropy_with_logits(out, y.float())
-                total_loss += loss #.cpu().item()
-                pred = out.max(1)[1]
+                train_nll = self.mean_nll(out, y.float())
+                train_acc = self.mean_accuracy(out, y.float())
+                
+                nll += train_nll
+                acc += train_acc
+                #loss = F.binary_cross_entropy_with_logits(out, y.float())
+                #total_loss += loss #.cpu().item()
+                #pred = out.max(1)[1]
+                pred = torch.sigmoid(out)
+                #print(pred)
+                '''
                 if str(self.device) == 'cuda':
                     P[idxs] = pred.cpu()
                 else:
                     P[idxs] = pred
-    
-        return P, total_loss/len(loader_te)
+                '''
+        return pred, nll/len(loader_te), acc/len(loader_te)
 
     def check_accuracy(self, X, Y):
         loader = DataLoader(self.handler(X, Y,
@@ -171,24 +179,16 @@ class Train:
                     nll += train_nll
                     acc += train_acc
                     penalty += train_penalty
-                    '''
-                    nll += temp_nll.detach().cpu().numpy()
-                    acc += train_acc.detach().cpu().numpy()
-                    penalty += train_penalty.detach().cpu().numpy()
-                    '''
                 env['nll'] = nll / len(loader_tr)
                 env['acc'] = acc / len(loader_tr)
                 env['penalty'] = penalty / len(loader_tr)
-            '''   
-            train_nll = np.stack([self.envs[0]['nll'], self.envs[1]['nll'], self.envs[2]['nll'], self.envs[3]['nll']]).mean()
-            train_acc = np.stack([self.envs[0]['acc'], self.envs[1]['acc'], self.envs[2]['acc'], self.envs[3]['acc']]).mean()
-            train_penalty = np.stack([self.envs[0]['penalty'], self.envs[1]['penalty'], 
-            self.envs[2]['penalty'], self.envs[3]['penalty']]).mean()
-            '''
-            train_nll = torch.stack([self.envs[0]['nll'], self.envs[1]['nll'], self.envs[2]['nll'], self.envs[3]['nll']]).mean()
-            train_acc = torch.stack([self.envs[0]['acc'], self.envs[1]['acc'], self.envs[2]['acc'], self.envs[3]['acc']]).mean()
-            train_penalty = torch.stack([self.envs[0]['penalty'], self.envs[1]['penalty'], 
-                                         self.envs[2]['penalty'], self.envs[3]['penalty']]).mean()
+                
+            #, self.envs[2]['nll'], self.envs[3]['nll']
+            #, self.envs[2]['acc'], self.envs[3]['acc']
+            #, self.envs[2]['penalty'], self.envs[3]['penalty']
+            train_nll = torch.stack([self.envs[0]['nll'], self.envs[1]['nll']]).mean()
+            train_acc = torch.stack([self.envs[0]['acc'], self.envs[1]['acc']]).mean()
+            train_penalty = torch.stack([self.envs[0]['penalty'], self.envs[1]['penalty']]).mean()
             weight_norm = torch.tensor(0.).cuda()
             
             if self.args['fc_only']:
@@ -210,11 +210,11 @@ class Train:
             loss.backward()
             optimizer.step()
             
-            _, test_loss = self.predict(self.X_te, self.Y_te)            
-            test_acc = self.check_accuracy(self.X_te, self.Y_te)
+            _, test_loss, test_acc = self.predict(self.X_te, self.Y_te)            
+            
             if step % 10 == 0:                 
                 pretty_print(np.int32(step), train_nll.detach().cpu().numpy(), 
                              train_acc.detach().cpu().numpy(), train_penalty.detach().cpu().numpy(), 
                              test_loss.detach().cpu().numpy(), test_acc.detach().cpu().numpy())
                 
-        return train_acc, test_acc
+        return train_acc.detach().cpu().numpy(), test_acc.detach().cpu().numpy()

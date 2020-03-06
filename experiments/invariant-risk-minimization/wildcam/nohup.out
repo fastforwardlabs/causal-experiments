@@ -15,10 +15,10 @@
 == Found 2 classes
 train environment:  43
 ['/coyote', '/raccoon']
-['../../../data/wildcam_subset_sample/train_43/raccoon/59641fc0-23d2-11e8-a6a3-ec086b02610b.jpg'
- '../../../data/wildcam_subset_sample/train_43/raccoon/5964201a-23d2-11e8-a6a3-ec086b02610b.jpg'
- '../../../data/wildcam_subset_sample/train_43/raccoon/5965a8dc-23d2-11e8-a6a3-ec086b02610b.jpg'
- '../../../data/wildcam_subset_sample/train_43/raccoon/5965a9ee-23d2-11e8-a6a3-ec086b02610b.jpg']
+['../../../data/wildcam_subset_sample/train_43/coyote/59641da0-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_43/coyote/59641dec-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_43/coyote/59641e1e-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_43/coyote/59641ea4-23d2-11e8-a6a3-ec086b02610b.jpg']
 class_indices:  [(0, '/coyote'), (1, '/raccoon')]
 ../../../data/wildcam_subset_sample/train_46
 == Found 2337 items 
@@ -30,47 +30,281 @@ train environment:  46
  '../../../data/wildcam_subset_sample/train_46/raccoon/59641e0b-23d2-11e8-a6a3-ec086b02610b.jpg'
  '../../../data/wildcam_subset_sample/train_46/raccoon/59641e1b-23d2-11e8-a6a3-ec086b02610b.jpg']
 class_indices:  [(0, '/coyote'), (1, '/raccoon')]
-../../../data/wildcam_subset_sample/train_88
-== Found 447 items 
-== Found 2 classes
-train environment:  88
-['/coyote', '/raccoon']
-['../../../data/wildcam_subset_sample/train_88/raccoon/585c032a-23d2-11e8-a6a3-ec086b02610b.jpg'
- '../../../data/wildcam_subset_sample/train_88/raccoon/585c0496-23d2-11e8-a6a3-ec086b02610b.jpg'
- '../../../data/wildcam_subset_sample/train_88/raccoon/5864354a-23d2-11e8-a6a3-ec086b02610b.jpg'
- '../../../data/wildcam_subset_sample/train_88/raccoon/5865e431-23d2-11e8-a6a3-ec086b02610b.jpg']
-class_indices:  [(0, '/coyote'), (1, '/raccoon')]
-../../../data/wildcam_subset_sample/train_130
+../../../data/wildcam_subset_sample/test
 == Found 668 items 
 == Found 2 classes
-train environment:  130
 ['/coyote', '/raccoon']
-['../../../data/wildcam_subset_sample/train_130/coyote/585a629b-23d2-11e8-a6a3-ec086b02610b.jpg'
- '../../../data/wildcam_subset_sample/train_130/coyote/585a648a-23d2-11e8-a6a3-ec086b02610b.jpg'
- '../../../data/wildcam_subset_sample/train_130/coyote/585da9ff-23d2-11e8-a6a3-ec086b02610b.jpg'
- '../../../data/wildcam_subset_sample/train_130/coyote/585dabb0-23d2-11e8-a6a3-ec086b02610b.jpg']
-class_indices:  [(0, '/coyote'), (1, '/raccoon')]
-../../../data/wildcam_subset_sample/test
-== Found 651 items 
-== Found 2 classes
-['/coyote', '/raccoon']
-['../../../data/wildcam_subset_sample/test/raccoon/585c063f-23d2-11e8-a6a3-ec086b02610b.jpg'
- '../../../data/wildcam_subset_sample/test/raccoon/585dac58-23d2-11e8-a6a3-ec086b02610b.jpg'
- '../../../data/wildcam_subset_sample/test/raccoon/585f4cbc-23d2-11e8-a6a3-ec086b02610b.jpg'
- '../../../data/wildcam_subset_sample/test/raccoon/585f5022-23d2-11e8-a6a3-ec086b02610b.jpg']
-working with  4 training environments datasets: 
+['../../../data/wildcam_subset_sample/test/coyote/585a629b-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/test/coyote/585a648a-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/test/coyote/585da9ff-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/test/coyote/585dabb0-23d2-11e8-a6a3-ec086b02610b.jpg']
+working with 2 training environments datasets: 
 env['images']:  1224
 env['labels']:  1224
 env['images']:  2337
 env['labels']:  2337
-env['images']:  447
-env['labels']:  447
-env['images']:  668
-env['labels']:  668
-x_test:  651
-y_test:  651
+x_test:  668
+y_test:  668
 Using GPU - True
+Restart 0
 feature extraction
 step            train nll       train acc       train penalty   test nll        test acc     
-0               0.76190         0.42069         0.01174         0.74784         0.42151      
-10              0.71264         0.49046         0.00322         0.67535         0.55546      
+0               0.80010         0.38945         0.01944         0.69742         0.51160      
+10              0.73553         0.41911         0.00347         0.70697         0.43101      
+20              0.69909         0.48139         0.00096         0.70687         0.42235      
+30              0.66766         0.53367         0.00055         0.70259         0.43008      
+40              0.64019         0.59582         0.00149         0.68781         0.45084      
+50              0.61882         0.63736         0.00295         0.67694         0.47210      
+Final train acc (mean/std across restarts so far):
+0.6374 0.0
+Final test acc (mean/std across restarts so far):
+0.4721 0.0
+time for training:  52.4 minutes
+
+
+========================================IRM========================================
+{'n_restarts': 1, 'steps': 51, 'n_classes': 2, 'fc_only': True, 'model_path': './models/', 'transform': {'train': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+), 'test': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+)}, 'loader_tr_args': {'batch_size': 100, 'num_workers': 1}, 'loader_te_args': {'batch_size': 100, 'num_workers': 1}, 'loader_sample_args': {'batch_size': 100, 'num_workers': 1}, 'optimizer_args': {'lr': 0.001, 'l2_regularizer_weight': 0.001, 'penalty_anneal_iters': 10, 'penalty_weight': 100.0}}
+../../../data/wildcam_subset_sample/train_43
+== Found 1224 items 
+== Found 2 classes
+train environment:  43
+['/coyote', '/raccoon']
+['../../../data/wildcam_subset_sample/train_43/coyote/59641da0-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_43/coyote/59641dec-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_43/coyote/59641e1e-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_43/coyote/59641ea4-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+../../../data/wildcam_subset_sample/train_46
+== Found 2337 items 
+== Found 2 classes
+train environment:  46
+['/coyote', '/raccoon']
+['../../../data/wildcam_subset_sample/train_46/raccoon/59641da8-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_46/raccoon/59641db6-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_46/raccoon/59641e0b-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_46/raccoon/59641e1b-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+../../../data/wildcam_subset_sample/test
+== Found 668 items 
+== Found 2 classes
+['/coyote', '/raccoon']
+['../../../data/wildcam_subset_sample/test/coyote/585a629b-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/test/coyote/585a648a-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/test/coyote/585da9ff-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/test/coyote/585dabb0-23d2-11e8-a6a3-ec086b02610b.jpg']
+working with 2 training environments datasets: 
+env['images']:  1224
+env['labels']:  1224
+env['images']:  2337
+env['labels']:  2337
+x_test:  668
+y_test:  668
+Using GPU - True
+Restart 0
+feature extraction
+step            train nll       train acc       train penalty   test nll        test acc     
+0               0.80010         0.38945         0.01944         0.69865         0.50513      
+10              0.72731         0.43387         0.00264         0.70818         0.42244      
+20              0.72420         0.44356         0.00245         0.70749         0.42462      
+30              0.71998         0.43985         0.00191         0.71127         0.42731      
+40              0.71469         0.45114         0.00155         0.70479         0.43378      
+50              0.71342         0.45818         0.00149         0.70200         0.45000      
+Final train acc (mean/std across restarts so far):
+0.4582 0.0
+Final test acc (mean/std across restarts so far):
+0.45 0.0
+time for training:  52.3 minutes
+
+
+========================================IRM========================================
+{'n_restarts': 1, 'steps': 51, 'n_classes': 2, 'fc_only': True, 'model_path': './models/', 'transform': {'train': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+), 'test': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+)}, 'loader_tr_args': {'batch_size': 100, 'num_workers': 1}, 'loader_te_args': {'batch_size': 100, 'num_workers': 1}, 'loader_sample_args': {'batch_size': 100, 'num_workers': 1}, 'optimizer_args': {'lr': 0.001, 'l2_regularizer_weight': 0.001, 'penalty_anneal_iters': 10, 'penalty_weight': 1000.0}}
+../../../data/wildcam_subset_sample/train_43
+== Found 1224 items 
+== Found 2 classes
+train environment:  43
+['/coyote', '/raccoon']
+['../../../data/wildcam_subset_sample/train_43/coyote/59641da0-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_43/coyote/59641dec-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_43/coyote/59641e1e-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_43/coyote/59641ea4-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+../../../data/wildcam_subset_sample/train_46
+== Found 2337 items 
+== Found 2 classes
+train environment:  46
+['/coyote', '/raccoon']
+['../../../data/wildcam_subset_sample/train_46/raccoon/59641da8-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_46/raccoon/59641db6-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_46/raccoon/59641e0b-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_46/raccoon/59641e1b-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+../../../data/wildcam_subset_sample/test
+== Found 668 items 
+== Found 2 classes
+['/coyote', '/raccoon']
+['../../../data/wildcam_subset_sample/test/coyote/585a629b-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/test/coyote/585a648a-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/test/coyote/585da9ff-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/test/coyote/585dabb0-23d2-11e8-a6a3-ec086b02610b.jpg']
+working with 2 training environments: 
+env['images']:  1224
+env['labels']:  1224
+env['images']:  2337
+env['labels']:  2337
+x_test:  668
+y_test:  668
+Using GPU - True
+Restart 0
+feature extraction
+step            train nll       train acc       train penalty   test nll        test acc     
+0               0.80010         0.38945         0.01944         0.69865         0.50513      
+10              0.72731         0.43387         0.00264         0.70818         0.42244      
+20              0.72454         0.44335         0.00248         0.70749         0.42462      
+30              0.72062         0.43766         0.00196         0.71132         0.42588      
+40              0.71558         0.44971         0.00161         0.70486         0.43521      
+50              0.71456         0.45700         0.00157         0.70212         0.45496      
+Final train acc (mean/std across restarts so far):
+0.457 0.0
+Final test acc (mean/std across restarts so far):
+0.455 0.0
+time for training:  52.2 minutes
+
+
+========================================IRM========================================
+{'n_restarts': 1, 'steps': 101, 'n_classes': 2, 'fc_only': True, 'model_path': './models/', 'transform': {'train': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+), 'test': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+)}, 'loader_tr_args': {'batch_size': 100, 'num_workers': 1}, 'loader_te_args': {'batch_size': 100, 'num_workers': 1}, 'loader_sample_args': {'batch_size': 100, 'num_workers': 1}, 'optimizer_args': {'lr': 0.001, 'l2_regularizer_weight': 0.001, 'penalty_anneal_iters': 10, 'penalty_weight': 100.0}}
+../../../data/wildcam_subset_sample/train_43
+== Found 1224 items 
+== Found 2 classes
+train environment:  43
+['/coyote', '/raccoon']
+['../../../data/wildcam_subset_sample/train_43/coyote/59641da0-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_43/coyote/59641dec-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_43/coyote/59641e1e-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_43/coyote/59641ea4-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+../../../data/wildcam_subset_sample/train_46
+== Found 2337 items 
+== Found 2 classes
+train environment:  46
+['/coyote', '/raccoon']
+['../../../data/wildcam_subset_sample/train_46/raccoon/59641da8-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_46/raccoon/59641db6-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_46/raccoon/59641e0b-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_46/raccoon/59641e1b-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+../../../data/wildcam_subset_sample/test
+== Found 668 items 
+== Found 2 classes
+['/coyote', '/raccoon']
+['../../../data/wildcam_subset_sample/test/coyote/585a629b-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/test/coyote/585a648a-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/test/coyote/585da9ff-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/test/coyote/585dabb0-23d2-11e8-a6a3-ec086b02610b.jpg']
+working with 2 training environments: 
+env['images']:  1224
+env['labels']:  1224
+env['images']:  2337
+env['labels']:  2337
+x_test:  668
+y_test:  668
+Using GPU - True
+Restart 0
+feature extraction
+step            train nll       train acc       train penalty   test nll        test acc     
+0               0.80010         0.38945         0.01944         0.69865         0.50513      
+10              0.72731         0.43387         0.00264         0.70818         0.42244      
+20              0.72420         0.44356         0.00245         0.70749         0.42462      
+30              0.71998         0.43985         0.00191         0.71127         0.42731      
+40              0.71469         0.45114         0.00155         0.70479         0.43378      
+50              0.71342         0.45818         0.00149         0.70200         0.45000      
+60              0.71023         0.46039         0.00124         0.70455         0.45143      
+70              0.70955         0.45955         0.00111         0.70244         0.44966      
+80              0.70533         0.47001         0.00090         0.70321         0.44076      
+90              0.70454         0.47174         0.00090         0.69994         0.45462      
+100             0.70194         0.47034         0.00069         0.69685         0.46437      
+Final train acc (mean/std across restarts so far):
+0.4703 0.0
+Final test acc (mean/std across restarts so far):
+0.4644 0.0
+time for training:  104.8 minutes
+
+
+========================================IRM========================================
+{'n_restarts': 1, 'steps': 1000, 'n_classes': 2, 'fc_only': True, 'model_path': './models/', 'transform': {'train': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+), 'test': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+)}, 'loader_tr_args': {'batch_size': 100, 'num_workers': 1}, 'loader_te_args': {'batch_size': 100, 'num_workers': 1}, 'loader_sample_args': {'batch_size': 100, 'num_workers': 1}, 'optimizer_args': {'lr': 0.001, 'l2_regularizer_weight': 0.001, 'penalty_anneal_iters': 10, 'penalty_weight': 100.0}}
+../../../data/wildcam_subset_sample/train_43
+== Found 1224 items 
+== Found 2 classes
+train environment:  43
+['/coyote', '/raccoon']
+['../../../data/wildcam_subset_sample/train_43/coyote/59641da0-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_43/coyote/59641dec-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_43/coyote/59641e1e-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_43/coyote/59641ea4-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+../../../data/wildcam_subset_sample/train_46
+== Found 2337 items 
+== Found 2 classes
+train environment:  46
+['/coyote', '/raccoon']
+['../../../data/wildcam_subset_sample/train_46/raccoon/59641da8-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_46/raccoon/59641db6-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_46/raccoon/59641e0b-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_46/raccoon/59641e1b-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+../../../data/wildcam_subset_sample/test
+== Found 668 items 
+== Found 2 classes
+['/coyote', '/raccoon']
+['../../../data/wildcam_subset_sample/test/coyote/585a629b-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/test/coyote/585a648a-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/test/coyote/585da9ff-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/test/coyote/585dabb0-23d2-11e8-a6a3-ec086b02610b.jpg']
+working with 2 training environments: 
+env['images']:  1224
+env['labels']:  1224
+env['images']:  2337
+env['labels']:  2337
+x_test:  668
+y_test:  668
+Using GPU - True
+Restart 0
+feature extraction
+step            train nll       train acc       train penalty   test nll        test acc     
+0               0.80010         0.38945         0.01944         0.69865         0.50513      
+10              0.72731         0.43387         0.00264         0.70818         0.42244      
+20              0.72420         0.44356         0.00245         0.70749         0.42462      
+30              0.71998         0.43985         0.00191         0.71127         0.42731      
+40              0.71469         0.45114         0.00155         0.70479         0.43378      
+50              0.71342         0.45818         0.00149         0.70200         0.45000      

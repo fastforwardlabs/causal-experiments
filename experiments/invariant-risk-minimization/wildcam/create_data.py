@@ -63,7 +63,7 @@ if __name__ == '__main__':
     parser.add_argument('--in_dir', type=str, default="../../../data/iWildCam/train/")
     parser.add_argument('--out_dir', type=str, default="../../../data/wildcam_subset_sample/")
     parser.add_argument('--animal_list', type=str, nargs='+', default=['raccoon', 'coyote'])
-    parser.add_argument('--train_locations', type=int, nargs='+', default=[43, 46, 88, 130])
-    parser.add_argument('--test_locations', type=int, nargs='+', default=[115])
+    parser.add_argument('--train_locations', type=int, nargs='+', default=[43, 46]) #[43, 46, 88, 130]
+    parser.add_argument('--test_locations', type=int, nargs='+', default=[130]) #115
     args = dict(vars(parser.parse_args()))
     create_data(args)

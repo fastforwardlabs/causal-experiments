@@ -8,6 +8,7 @@ from dataset import get_dataset, get_handler
 from models import get_net
 from train import Train
 from torchvision import transforms
+from datetime import datetime
 
 if __name__ == "__main__":
     
@@ -17,7 +18,7 @@ if __name__ == "__main__":
     args_pool = {
         'WILDCAM': {
             'n_restarts': 1,
-            'steps': 51,
+            'steps': 1000,
             'n_classes': 2,
             'fc_only': True,
             'model_path': "./models/",
@@ -46,8 +47,8 @@ if __name__ == "__main__":
             'optimizer_args': {
                 'lr': 0.001,
                 'l2_regularizer_weight': 0.001,
-                'penalty_anneal_iters': 0, # make this 0 for ERM
-                'penalty_weight': 0.0 # make this 0 for ERM
+                'penalty_anneal_iters': 10, # make this 0 for ERM
+                'penalty_weight': 100.0 # make this 0 for ERM
             }
         }
     }
@@ -69,7 +70,7 @@ if __name__ == "__main__":
    
     # load dataset
     envs, x_test, y_test = get_dataset(dataset_name)
-    print("working with", len(envs), "training environments datasets: ")
+    print("working with", len(envs), "training environments: ")
     for env in envs:
         print("env['images']: ", len(env['images']))
         print("env['labels']: ", env['labels'].shape[0])
@@ -87,6 +88,10 @@ if __name__ == "__main__":
     final_train_accs = []
     final_test_accs = []
     train_process = Train(envs, x_test, y_test, net, handler, args)
+    
+    start = datetime.now().time()
+    FMT = '%H:%M:%S'
+    start = start.strftime(FMT)
     for restart in range(args['n_restarts']):  
         print("Restart", restart)
         train_acc, test_acc = train_process.train()
@@ -98,5 +103,9 @@ if __name__ == "__main__":
         print('Final test acc (mean/std across restarts so far):')
         print(round(np.mean(final_test_accs), 4), round(np.std(final_test_accs), 4))
     
+    end = datetime.now().time()
+    end = end.strftime(FMT)
+    time_elapsed = datetime.strptime(end, FMT) - datetime.strptime(start, FMT)
+    print("time for training: ", round(time_elapsed.total_seconds()/60.0, 1), "minutes")
     torch.save(train_process.clf.state_dict(), model_name)
     

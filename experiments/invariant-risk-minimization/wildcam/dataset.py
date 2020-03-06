@@ -102,7 +102,7 @@ def get_WildCam(overwrite=False):
     processedroot = str.join('/', [dataroot, 'processed'])
     if not os.path.exists(processedroot):
         os.mkdir(os.path.join(processedroot))
-    env_list = [43, 46, 88, 130]
+    env_list = [43, 46] #[100, 120] #[43, 46, 88, 130]
     envs = []
     for env in env_list:
         dataset_name = 'train' + '_' + str(env)
