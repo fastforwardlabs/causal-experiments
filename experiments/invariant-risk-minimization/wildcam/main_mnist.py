@@ -15,7 +15,7 @@ parser = argparse.ArgumentParser(description='Colored MNIST')
 parser.add_argument('--hidden_dim', type=int, default=256)
 parser.add_argument('--l2_regularizer_weight', type=float,default=0.001)
 parser.add_argument('--lr', type=float, default=0.001)
-parser.add_argument('--n_restarts', type=int, default=10)
+parser.add_argument('--n_restarts', type=int, default=1)
 parser.add_argument('--penalty_anneal_iters', type=int, default=100)
 parser.add_argument('--penalty_weight', type=float, default=10000.0)
 parser.add_argument('--steps', type=int, default=501)
@@ -127,13 +127,13 @@ for restart in range(flags.n_restarts):
   pretty_print('step', 'train nll', 'train acc', 'train penalty', 'test acc')
 
   for step in range(flags.steps):
-    print("step: ", step)
+    #print("step: ", step)
     for env in envs:
       logits = mlp(env['images'])
-      print("logits: ", logits.shape)
-      print(logits[0])
-      print("labels: ", env['labels'].shape)
-      print(env['labels'][0])
+      #print("logits: ", logits.shape)
+      #print(logits[0])
+      #print("labels: ", env['labels'].shape)
+      #print(env['labels'][0])
       #print(logits)
       env['nll'] = mean_nll(logits, env['labels'])
       env['acc'] = mean_accuracy(logits, env['labels'])
@@ -161,7 +161,7 @@ for restart in range(flags.n_restarts):
     optimizer.step()
     
     test_acc = envs[2]['acc']
-    if step % 100 == 0:
+    if step % 10 == 0:
       pretty_print(
         np.int32(step),
         train_nll.detach().cpu().numpy(),

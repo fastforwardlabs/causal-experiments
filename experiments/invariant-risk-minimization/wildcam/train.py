@@ -152,7 +152,8 @@ class Train:
         self.clf = self.net(n_classes=n_classes).to(self.device)
         if self.args['fc_only']: # feature extraction
             print("feature extraction")
-            optimizer = optim.SGD(self.clf.fc.parameters(), self.args['optimizer_args']['lr'])
+            #optimizer = optim.SGD(self.clf.fc.parameters(), self.args['optimizer_args']['lr'])
+            optimizer = optim.Adam(self.clf.fc.parameters(), self.args['optimizer_args']['lr'])
         else:
             optimizer = optim.SGD(self.clf.parameters(), self.args['optimizer_args']['lr'])
         
@@ -183,9 +184,6 @@ class Train:
                 env['acc'] = acc / len(loader_tr)
                 env['penalty'] = penalty / len(loader_tr)
                 
-            #, self.envs[2]['nll'], self.envs[3]['nll']
-            #, self.envs[2]['acc'], self.envs[3]['acc']
-            #, self.envs[2]['penalty'], self.envs[3]['penalty']
             train_nll = torch.stack([self.envs[0]['nll'], self.envs[1]['nll']]).mean()
             train_acc = torch.stack([self.envs[0]['acc'], self.envs[1]['acc']]).mean()
             train_penalty = torch.stack([self.envs[0]['penalty'], self.envs[1]['penalty']]).mean()
@@ -212,7 +210,7 @@ class Train:
             
             _, test_loss, test_acc = self.predict(self.X_te, self.Y_te)            
             
-            if step % 10 == 0:                 
+            if step % 100 == 0:                 
                 pretty_print(np.int32(step), train_nll.detach().cpu().numpy(), 
                              train_acc.detach().cpu().numpy(), train_penalty.detach().cpu().numpy(), 
                              test_loss.detach().cpu().numpy(), test_acc.detach().cpu().numpy())

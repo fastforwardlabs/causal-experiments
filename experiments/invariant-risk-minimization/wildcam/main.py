@@ -18,7 +18,7 @@ if __name__ == "__main__":
     args_pool = {
         'WILDCAM': {
             'n_restarts': 1,
-            'steps': 1000,
+            'steps': 1501,
             'n_classes': 2,
             'fc_only': True,
             'model_path': "./models/",
@@ -47,14 +47,17 @@ if __name__ == "__main__":
             'optimizer_args': {
                 'lr': 0.001,
                 'l2_regularizer_weight': 0.001,
-                'penalty_anneal_iters': 10, # make this 0 for ERM
-                'penalty_weight': 100.0 # make this 0 for ERM
+                'penalty_anneal_iters': 40, # make this 0 for ERM
+                'penalty_weight': 10000.0 # make this 0 for ERM
             }
         }
     }
        
     args = args_pool[dataset_name]
-    model_name = args['model_path'] + "wildcam_"
+    model_name = args['model_path'] + "wildcam_" + str(args['steps']) + "_" 
+    + str(args['optimizer_args']['lr']) + "_" + str(args['optimizer_args']['penalty_anneal_iters']) + "_" 
+    + str(args['optimizer_args']['penalty_weight']) + "_"
+    
     print("\n")
     if args['optimizer_args']['penalty_weight'] > 1.0:
         model_name = model_name + "IRM.pth"
