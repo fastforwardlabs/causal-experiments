@@ -498,3 +498,9 @@ step            train nll       train acc       train penalty   test nll        
 1200            0.45548         0.72683         0.00114         0.54542         0.68857      
 1300            0.45603         0.72985         0.00116         0.54973         0.70134      
 1400            0.46153         0.72494         0.00092         0.55321         0.67857      
+1500            0.47214         0.71186         0.00138         0.55139         0.68655      
+Final train acc (mean/std across restarts so far):
+0.7119 0.0
+Final test acc (mean/std across restarts so far):
+0.6866 0.0
+time for training:  129.4 minutes
