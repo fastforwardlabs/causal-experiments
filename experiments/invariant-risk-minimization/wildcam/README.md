@@ -14,45 +14,37 @@ unzip train_images.zip -d ./train
 unzip test_images.zip -d ./test
 ```
 
+NOTE: We use test images as they are unlabeled.
+
 ### create_data.py
 
-Re-creates data folder with the following structure with disjoint locations in the train and validation sets
+Re-creates data folder with the following structure with disjoint locations in the train and test sets. The locations in this case correspond to different environments.
 
 ```
-/wildcam_subset
+/wildcam_subset_sample
     /train
+        /<location 1>
+            /coyote
+                /*.jpg
+            /raccoon
+                /*.jpg
+        /<location 2>
+            /coyote
+                /*.jpg
+            /raccoon
+                /*.jpg
+    /test
         /coyote
             /*.jpg
         /raccoon
             /*.jpg
-    /valid
-        /coyote
-            /*.jpg
-        /raccoon
-            /*.jpg
-```
-
-### sample data for modeling
-
-Helps reduce runtime
-
-```
-mkdir wildcam_subset_sample
-cd wildcam_subset_sample/
-mkdir train
-cd train
-mkdir coyote
-mkdir raccoon
-find /home/nisha/causal-experiments/data/wildcam_subset/train/coyote/ -maxdepth 1 -type f |head -1000|xargs cp -t "/home/nisha/causal-experiments/data/wildcam_subset_sample/train/coyote"
-find /home/nisha/causal-experiments/data/wildcam_subset/train/raccoon/ -maxdepth 1 -type f |head -1000|xargs cp -t "/home/nisha/causal-experiments/data/wildcam_subset_sample/train/raccoon"
-cp -r /home/nisha/causal-experiments/data/wildcam_subset/valid /home/nisha/causal-experiments/data/wildcam_subset_sample
 ```
 
 **Alternately, you could skip all the data steps and use data on elephant located at /datapool/wildcam**
 
 ```
 $ ls /datapool/wildcam
-iWildCam wildcam_subset  wildcam_subset_sample
+iWildCam wildcam_subset_sample
 ```
 
 ## Environment setup
@@ -73,18 +65,37 @@ conda install nb_conda
 For Lime explanations - recreate the environment with python 2.7
 
 ```
+conda create --name irm2.7 python=2.7 ipykernel
+conda activate irm2.7
+export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-10.0/lib64
+conda install pytorch torchvision cudatoolkit=10.0 -c pytorch
+conda install -c conda-forge matplotlib
+conda install nb_conda
 conda install -c conda-forge lime
 conda install scikit-learn
 conda install scikit-image
-conda install -c conda-forge progressbar #2 - this doesn't work
+conda install -c conda-forge progressbar
 ```
 
+Create 'models' sub-folder
+
+```
+mkdir ./models
+```
 
 ## Programs
 
-* dataset.py - change datapaths, if you are using data from elephant - /datapool/wildcam/wildcam_subset or wildcam_subset_sample
-* models.py
+* dataset.py - change datapaths, if you are using data from elephant - /datapool/wildcam/wildcam_subset_sample
+* models.py - Resnet18 models for feature extraction and/or fine-tuning
 * main.py - entry point
-* train.py
+* train.py - trains with both IRM and ERM approaches
+* main_mnist.py - code from the IRM research paper to test and review stuff
+* /notebooks - exploratory code, mainly to try and test things out. 
+* /models - to save model runs
 
-* main_mnist.py - code from the IRM research paper
+## Results
+
+* model_results.txt - initial model results
+* model_results_irm.txt - documented IRM model iterations
+* model_results_erm.txt - documented IERM model iterations

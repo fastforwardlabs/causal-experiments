@@ -18,7 +18,7 @@ if __name__ == "__main__":
     args_pool = {
         'WILDCAM': {
             'n_restarts': 1,
-            'steps': 1501,
+            'steps': 1,
             'n_classes': 2,
             'fc_only': True,
             'model_path': "./models/",
@@ -54,9 +54,7 @@ if __name__ == "__main__":
     }
        
     args = args_pool[dataset_name]
-    model_name = args['model_path'] + "wildcam_" + str(args['steps']) + "_" 
-    + str(args['optimizer_args']['lr']) + "_" + str(args['optimizer_args']['penalty_anneal_iters']) + "_" 
-    + str(args['optimizer_args']['penalty_weight']) + "_"
+    model_name = args['model_path'] + "wildcam_" + str(args['steps']) + "_" + str(args['optimizer_args']['lr']) + "_" + str(args['optimizer_args']['penalty_anneal_iters']) + "_" + str(args['optimizer_args']['penalty_weight']) + "_"
     
     print("\n")
     if args['optimizer_args']['penalty_weight'] > 1.0:
@@ -92,9 +90,7 @@ if __name__ == "__main__":
     final_test_accs = []
     train_process = Train(envs, x_test, y_test, net, handler, args)
     
-    start = datetime.now().time()
-    FMT = '%H:%M:%S'
-    start = start.strftime(FMT)
+    start = datetime.now()
     for restart in range(args['n_restarts']):  
         print("Restart", restart)
         train_acc, test_acc = train_process.train()
@@ -106,9 +102,9 @@ if __name__ == "__main__":
         print('Final test acc (mean/std across restarts so far):')
         print(round(np.mean(final_test_accs), 4), round(np.std(final_test_accs), 4))
     
-    end = datetime.now().time()
-    end = end.strftime(FMT)
-    time_elapsed = datetime.strptime(end, FMT) - datetime.strptime(start, FMT)
-    print("time for training: ", round(time_elapsed.total_seconds()/60.0, 1), "minutes")
+    end = datetime.now()
+
+    time_elapsed = end - start
+    print("time for training: ", time_elapsed.days, time_elapsed.min, "minutes and", time_elapsed.seconds, "seconds.")
     torch.save(train_process.clf.state_dict(), model_name)
     

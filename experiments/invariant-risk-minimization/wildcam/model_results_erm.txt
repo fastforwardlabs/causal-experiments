@@ -402,3 +402,70 @@ Final test acc (mean/std across restarts so far):
 0.4607 0.0
 time for training:  115.4 minutes
 
+nohup: ignoring input
+
+
+========================================ERM========================================
+{'n_restarts': 1, 'steps': 1501, 'n_classes': 2, 'fc_only': True, 'model_path': './models/', 'transform': {'train': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+), 'test': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+)}, 'loader_tr_args': {'batch_size': 100, 'num_workers': 1}, 'loader_te_args': {'batch_size': 100, 'num_workers': 1}, 'loader_sample_args': {'batch_size': 100, 'num_workers': 1}, 'optimizer_args': {'lr': 0.001, 'l2_regularizer_weight': 0.001, 'penalty_anneal_iters': 0, 'penalty_weight': 0.0}}
+../../../data/wildcam_subset_sample/train_43
+== Found 1224 items 
+== Found 2 classes
+train environment:  43
+['/coyote', '/raccoon']
+['../../../data/wildcam_subset_sample/train_43/coyote/59641da0-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_43/coyote/59641dec-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_43/coyote/59641e1e-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_43/coyote/59641ea4-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+../../../data/wildcam_subset_sample/train_46
+== Found 2337 items 
+== Found 2 classes
+train environment:  46
+['/coyote', '/raccoon']
+['../../../data/wildcam_subset_sample/train_46/raccoon/59641da8-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_46/raccoon/59641db6-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_46/raccoon/59641e0b-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_46/raccoon/59641e1b-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+../../../data/wildcam_subset_sample/test
+== Found 668 items 
+== Found 2 classes
+['/coyote', '/raccoon']
+['../../../data/wildcam_subset_sample/test/coyote/585a629b-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/test/coyote/585a648a-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/test/coyote/585da9ff-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/test/coyote/585dabb0-23d2-11e8-a6a3-ec086b02610b.jpg']
+working with 2 training environments: 
+env['images']:  1224
+env['labels']:  1224
+env['images']:  2337
+env['labels']:  2337
+x_test:  668
+y_test:  668
+Using GPU - True
+Restart 0
+feature extraction
+step            train nll       train acc       train penalty   test nll        test acc     
+0               0.80010         0.38945         0.01944         0.71857         0.40681      
+100             0.31112         0.87934         0.01033         0.90945         0.40387      
+200             0.24936         0.90685         0.01070         1.17692         0.39538      
+300             0.22574         0.91253         0.00852         1.37806         0.39328      
+400             0.19603         0.93416         0.00794         1.28477         0.39689      
+500             0.18929         0.93085         0.00673         1.28178         0.40597      
+600             0.18325         0.93329         0.00634         1.39345         0.40445      
+700             0.16350         0.94956         0.00681         1.38998         0.40017      
+800             0.16422         0.94376         0.00646         1.28199         0.41160      
+900             0.16018         0.94677         0.00597         1.24112         0.40773      
+1000            0.14987         0.94721         0.00547         1.06639         0.44277      
+1100            0.15624         0.94861         0.00593         1.19853         0.42731      
+1200            0.14868         0.94610         0.00503         1.06842         0.45067      
+1300            0.14360         0.95130         0.00498         1.05184         0.46513      
+1400            0.13841         0.95278         0.00616         1.04377         0.47092      

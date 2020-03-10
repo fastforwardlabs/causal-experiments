@@ -51,7 +51,6 @@ def find_classes(root_dir):
             if (f.endswith("jpg")):
                 r=root.split('/')
                 lr=len(r)
-                # retour.append((f,r[lr-2]+"/"+r[lr-1],root))
                 retour.append((f,"/"+r[lr-1],root))                
     print("== Found %d items "%len(retour))
     return retour
@@ -72,7 +71,6 @@ def create_nparray(dataset, dataroot, processedroot, overwrite=False):
     processedroot - where to save the nparray
     overwrite - whether to overwrite the existing numpy array, default false
     """
-    #if not os.path.isfile(os.path.join(processedroot, dataset, 'images.npy')) or overwrite:
     if overwrite:
         print(str.join('/', [dataroot, dataset]))
         x = WildCamFolder(str.join('/', [dataroot, dataset]))
@@ -102,7 +100,7 @@ def get_WildCam(overwrite=False):
     processedroot = str.join('/', [dataroot, 'processed'])
     if not os.path.exists(processedroot):
         os.mkdir(os.path.join(processedroot))
-    env_list = [43, 46] #[100, 120] #[43, 46, 88, 130]
+    env_list = [43, 46] 
     envs = []
     for env in env_list:
         dataset_name = 'train' + '_' + str(env)
@@ -142,7 +140,6 @@ class WildCamHandler(Dataset):
     def __init__(self, X, Y, transform=None):
         self.X = X
         self.Y = Y
-        #resize_img = transforms.Compose([transforms.Resize((256, 256))])    
         self.transform = transform
 
     def __getitem__(self, index):
@@ -150,7 +147,6 @@ class WildCamHandler(Dataset):
         # If there are some gray/ single channel images
         x = Image.open(x).convert('RGB').resize((256, 256))
         if self.transform is not None:
-            #x = Image.fromarray(x)
             x = self.transform(x)
         return x, y, index
 
