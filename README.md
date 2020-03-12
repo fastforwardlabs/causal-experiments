@@ -31,6 +31,7 @@ make student
 ## experiments
 
 * *causal discovery* - playing with the [CausalDiscoveryToolbox](https://github.com/FenTechSolutions/CausalDiscoveryToolbox)
+* *causalnex* - trying the new [CausalNex](https://causalnex.readthedocs.io/en/latest/) library
 * *dowhy* - trying to use [DoWhy](https://microsoft.github.io/dowhy/) on a couple of datasets
 * *invariant causal prediction* - toying with the R libraries accompanying the papers [Causal inference using invariant prediction: identification and confidence intervals](https://arxiv.org/abs/1501.01332) and [Invariant Causal Prediction for Nonlinear Models](https://arxiv.org/abs/1706.08576)
 * *invariant risk minimization* - experiments around [Invariant Risk Minimization](https://arxiv.org/abs/1907.02893)
