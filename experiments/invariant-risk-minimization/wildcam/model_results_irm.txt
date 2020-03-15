@@ -504,3 +504,92 @@ Final train acc (mean/std across restarts so far):
 Final test acc (mean/std across restarts so far):
 0.6866 0.0
 time for training:  129.4 minutes
+
+nohup: ignoring input
+
+
+========================================IRM========================================
+{'n_restarts': 1, 'steps': 3001, 'n_classes': 2, 'fc_only': True, 'model_path': './models/', 'transform': {'train': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+), 'test': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+)}, 'loader_tr_args': {'batch_size': 100, 'num_workers': 1}, 'loader_te_args': {'batch_size': 100, 'num_workers': 1}, 'loader_sample_args': {'batch_size': 100, 'num_workers': 1}, 'optimizer_args': {'lr': 0.001, 'l2_regularizer_weight': 0.001, 'penalty_anneal_iters': 40, 'penalty_weight': 10000.0}}
+../../../data/wildcam_subset_sample/train_43
+== Found 1224 items 
+== Found 2 classes
+train environment:  43
+['/coyote', '/raccoon']
+['../../../data/wildcam_subset_sample/train_43/coyote/59641da0-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_43/coyote/59641dec-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_43/coyote/59641e1e-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_43/coyote/59641ea4-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+../../../data/wildcam_subset_sample/train_46
+== Found 2337 items 
+== Found 2 classes
+train environment:  46
+['/coyote', '/raccoon']
+['../../../data/wildcam_subset_sample/train_46/raccoon/59641da8-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_46/raccoon/59641db6-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_46/raccoon/59641e0b-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/train_46/raccoon/59641e1b-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+../../../data/wildcam_subset_sample/test
+== Found 668 items 
+== Found 2 classes
+['/coyote', '/raccoon']
+['../../../data/wildcam_subset_sample/test/coyote/585a629b-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/test/coyote/585a648a-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/test/coyote/585da9ff-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '../../../data/wildcam_subset_sample/test/coyote/585dabb0-23d2-11e8-a6a3-ec086b02610b.jpg']
+working with 2 training environments: 
+env['images']:  1224
+env['labels']:  1224
+env['images']:  2337
+env['labels']:  2337
+x_test:  668
+y_test:  668
+Using GPU - True
+Restart 0
+feature extraction
+step            train nll       train acc       train penalty   test nll        test acc     
+0               0.80010         0.38945         0.01944         0.72645         0.39042      
+100             0.42328         0.77396         0.00205         0.75785         0.41445      
+200             0.42402         0.76539         0.00215         0.72884         0.42042      
+300             0.42990         0.76015         0.00240         0.72762         0.42655      
+400             0.41676         0.76971         0.00204         0.66220         0.47101      
+500             0.43118         0.76366         0.00281         0.64120         0.49916      
+600             0.43488         0.75357         0.00263         0.63219         0.52269      
+700             0.43488         0.75095         0.00119         0.61740         0.53479      
+800             0.43854         0.75071         0.00219         0.59890         0.57286      
+900             0.44039         0.74512         0.00137         0.58031         0.62277      
+1000            0.45013         0.73767         0.00122         0.55227         0.68008      
+1100            0.45301         0.73577         0.00091         0.56304         0.66454      
+1200            0.45548         0.72683         0.00114         0.54542         0.68857      
+1300            0.45603         0.72985         0.00116         0.54973         0.70134      
+1400            0.46153         0.72494         0.00092         0.55321         0.67857      
+1500            0.47214         0.71186         0.00138         0.55139         0.68655      
+1600            0.46462         0.72831         0.00094         0.54271         0.70655      
+1700            0.47275         0.71494         0.00084         0.56075         0.66513      
+1800            0.47410         0.70618         0.00087         0.53560         0.73017      
+1900            0.47580         0.70947         0.00103         0.53174         0.73496      
+2000            0.47785         0.71060         0.00082         0.52807         0.75210      
+2100            0.48130         0.69809         0.00110         0.54131         0.71227      
+2200            0.48613         0.69521         0.00105         0.53063         0.75412      
+2300            0.48739         0.69838         0.00104         0.53971         0.72311      
+2400            0.49784         0.67713         0.00068         0.53975         0.72782      
+2500            0.50104         0.66867         0.00087         0.54597         0.70933      
+2600            0.49851         0.68028         0.00071         0.52011         0.77908      
+2700            0.50205         0.68519         0.00114         0.52678         0.75916      
+2800            0.52302         0.64433         0.00052         0.53833         0.74008      
+2900            0.53774         0.63106         0.00076         0.54609         0.72933      
+3000            0.55319         0.61722         0.00070         0.54399         0.75412      
+Final train acc (mean/std across restarts so far):
+0.6172 0.0
+Final test acc (mean/std across restarts so far):
+0.7541 0.0
+time for training:  2 days -999999999 days, 0:00:00 minutes and 12053 seconds.

@@ -98,4 +98,4 @@ mkdir ./models
 
 * model_results.txt - initial model results
 * model_results_irm.txt - documented IRM model iterations
-* model_results_erm.txt - documented IERM model iterations
+* model_results_erm.txt - documented ERM model iterations
