@@ -1,20 +1,18 @@
 import matplotlib
-matplotlib.use('Agg')
-
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_pdf import PdfPages
 import matplotlib.gridspec as gridspec
+
+import numpy as np
+import os, json
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import numpy as np
-import os, json
 
 from torchvision import models, transforms
 from torch.autograd import Variable
 from PIL import Image
 from models import get_net
-
 from lime import lime_image
 from skimage.segmentation import mark_boundaries
 
@@ -50,8 +48,9 @@ def batch_predict(images):
     batch = batch.to(device)
     
     logits = model(batch)
-    #probs = torch.sigmoid(logits)
-    probs = torch.cat((1-torch.sigmoid(logits), torch.sigmoid(logits)), 1)
+    probs = torch.sigmoid(logits)
+    # if you don't pass 2 probs, LIME always classifies all examples in the coyote category
+    #probs = torch.cat((1-torch.sigmoid(logits), torch.sigmoid(logits)), 1)
     return probs.detach().cpu().numpy()
 
 def generate_explanations(images, outfile, num_samples, num_features, seed=123):
@@ -63,7 +62,7 @@ def generate_explanations(images, outfile, num_samples, num_features, seed=123):
     i = 0
     for img in images:
         img = get_image(img)
-        explainer = lime_image.LimeImageExplainer()
+        explainer = lime_image.LimeImageExplainer(feature_selection='lasso_path', verbose=True, random_state=123)
     
         explanation = explainer.explain_instance(np.array(pill_transf(img)), 
                                          batch_predict, # classification function
@@ -71,6 +70,7 @@ def generate_explanations(images, outfile, num_samples, num_features, seed=123):
                                          hide_color=0, 
                                          num_samples=num_samples, # number of images that will be sent to classification function
                                          random_seed=seed) 
+        print("label: ", explanation.top_labels[0])
         temp, mask = explanation.get_image_and_mask(explanation.top_labels[0], 
                                             positive_only=True, 
                                             num_features=num_features[i], hide_rest=False)
@@ -94,9 +94,8 @@ def generate_explanations(images, outfile, num_samples, num_features, seed=123):
         f_ax3.set_yticklabels([])
         f_ax3.set_xticklabels([])
         #f_ax1.set_title("label: "+str(explanation.top_labels[0]), fontsize=5)
-
         i += 1
-    plt.savefig(outfile, dpi=300, bbox_inches='tight') # To save figure
+    plt.savefig(outfile, dpi=300, bbox_inches='tight', pad_inches=0) # To save figure
     plt.show() # To show figure
 
 
@@ -111,7 +110,17 @@ if __name__ == "__main__":
 
     pill_transf = get_pil_transform()
     preprocess_transform = get_preprocess_transform()
-
+    '''
+    generate_explanations(images = 
+                          ['../../../data/wildcam_subset_sample/train_46/coyote/59817c02-23d2-11e8-a6a3-ec086b02610b.jpg'], 
+                          outfile='./figures/IRM_coyote_explanation.png', 
+                          num_samples=1000, num_features=[5], seed=123)
+    generate_explanations(images = 
+                          ['../../../data/wildcam_subset_sample/train_46/raccoon/59c669d3-23d2-11e8-a6a3-ec086b02610b.jpg'], 
+                          outfile='./figures/IRM_raccoon_explanation.png', 
+                          num_samples=1000, num_features=[10], seed=123)
+    '''
+    '''
     generate_explanations(images = 
                           ['../../../data/wildcam_subset_sample/train_46/coyote/59817c02-23d2-11e8-a6a3-ec086b02610b.jpg',
                            '../../../data/wildcam_subset_sample/train_46/coyote/59e77deb-23d2-11e8-a6a3-ec086b02610b.jpg',
@@ -124,6 +133,7 @@ if __name__ == "__main__":
                            '../../../data/wildcam_subset_sample/test/coyote/592c4d30-23d2-11e8-a6a3-ec086b02610b.jpg'], 
                           outfile='./figures/IRM_results.png', 
                           num_samples=1000, num_features=[5, 10, 10, 15, 5, 10, 15, 10, 15], seed=123)
+    
     '''
     generate_explanations(images = 
                           ['../../../data/wildcam_subset_sample/train_46/coyote/59817c02-23d2-11e8-a6a3-ec086b02610b.jpg',
@@ -137,4 +147,4 @@ if __name__ == "__main__":
                            '../../../data/wildcam_subset_sample/test/coyote/592c4d30-23d2-11e8-a6a3-ec086b02610b.jpg'], 
                           outfile='./figures/ERM_results.png', 
                           num_samples=1000, num_features=[5, 10, 10, 15, 5, 10, 15, 10, 15], seed=123)
-   '''
+   
