@@ -68,6 +68,8 @@ if __name__ == "__main__":
     
     np.random.seed(seed)
     torch.manual_seed(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
     
    
     # load dataset
