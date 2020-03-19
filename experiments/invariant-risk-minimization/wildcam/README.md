@@ -49,6 +49,14 @@ iWildCam wildcam_subset_sample
 
 ## Environment setup
 
+There is a conda environment file, which can be used to set up the right python 3.7 environment with:
+
+```bash
+conda env create -f env.yaml
+```
+
+Alternatively, set the environment up manually with:
+
 ```
 conda create --name irm python=3.7 ipykernel
 conda activate irm
