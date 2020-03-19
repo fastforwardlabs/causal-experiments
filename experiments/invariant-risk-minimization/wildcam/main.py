@@ -14,6 +14,7 @@ if __name__ == "__main__":
     
     seed = 123
     dataset_name = 'WILDCAM'
+    dataset_path = '/datapool/wildcam/wildcam_subset_sample'
     
     args_pool = {
         'WILDCAM': {
@@ -67,10 +68,12 @@ if __name__ == "__main__":
     
     np.random.seed(seed)
     torch.manual_seed(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
     
    
     # load dataset
-    envs, x_test, y_test = get_dataset(dataset_name)
+    envs, x_test, y_test = get_dataset(dataset_name, dataset_path)
     print("working with", len(envs), "training environments: ")
     for env in envs:
         print("env['images']: ", len(env['images']))
@@ -107,4 +110,3 @@ if __name__ == "__main__":
     time_elapsed = end - start
     print("time for training: ", time_elapsed.days, time_elapsed.min, "minutes and", time_elapsed.seconds, "seconds.")
     torch.save(train_process.clf.state_dict(), model_name)
-    
