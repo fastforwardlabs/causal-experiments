@@ -9,10 +9,10 @@ import os
 import os.path
 import errno
 
-def get_dataset(name):
+def get_dataset(name, path):
     if name == 'WILDCAM':
-        return get_WildCam(overwrite=True)
-    
+        return get_WildCam(path, overwrite=True)
+
 class WildCamFolder(Dataset):
     '''
     The items are (filename,category). The index of all the categories can be found in self.idx_classes
@@ -95,8 +95,7 @@ def create_nparray(dataset, dataroot, processedroot, overwrite=False):
         labels = np.load(os.path.join(processedroot, dataset, 'labels.npy'))
     return images, labels
 
-def get_WildCam(overwrite=False):
-    dataroot='../../../data/wildcam_subset_sample'
+def get_WildCam(dataroot, overwrite=False):
     processedroot = str.join('/', [dataroot, 'processed'])
     if not os.path.exists(processedroot):
         os.mkdir(os.path.join(processedroot))

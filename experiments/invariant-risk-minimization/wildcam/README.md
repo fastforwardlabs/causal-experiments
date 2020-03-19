@@ -86,9 +86,9 @@ mkdir ./models
 
 ## Programs
 
-* dataset.py - change datapaths, if you are using data from elephant - /datapool/wildcam/wildcam_subset_sample
+* dataset.py - WildCam data loading
 * models.py - Resnet18 models for feature extraction and/or fine-tuning
-* main.py - entry point
+* main.py - entry point - change run parameters and data paths from here
 * train.py - trains with both IRM and ERM approaches
 * main_mnist.py - code from the IRM research paper to test and review stuff
 * /notebooks - exploratory code, mainly to try and test things out. 
