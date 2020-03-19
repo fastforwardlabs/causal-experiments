@@ -48,9 +48,9 @@ def batch_predict(images):
     batch = batch.to(device)
     
     logits = model(batch)
-    probs = torch.sigmoid(logits)
+    #probs = torch.sigmoid(logits)
     # if you don't pass 2 probs, LIME always classifies all examples in the coyote category
-    #probs = torch.cat((1-torch.sigmoid(logits), torch.sigmoid(logits)), 1)
+    probs = torch.cat((1-torch.sigmoid(logits), torch.sigmoid(logits)), 1)
     return probs.detach().cpu().numpy()
 
 def generate_explanations(images, outfile, num_samples, num_features, seed=123):
@@ -73,7 +73,7 @@ def generate_explanations(images, outfile, num_samples, num_features, seed=123):
         print("label: ", explanation.top_labels[0])
         temp, mask = explanation.get_image_and_mask(explanation.top_labels[0], 
                                             positive_only=True, 
-                                            num_features=num_features[i], hide_rest=False)
+                                            num_features=num_features[i], hide_rest=True)
         img_boundry1 = mark_boundaries(temp/255.0, mask)
 
         temp, mask = explanation.get_image_and_mask(explanation.top_labels[0], 
@@ -100,8 +100,8 @@ def generate_explanations(images, outfile, num_samples, num_features, seed=123):
 
 
 if __name__ == "__main__":
-    #model_filename="./models/wildcam_1501_0.001_40_10000.0_IRM.pth"
-    model_filename="./models/wildcam_1501_0.001_0_0.0_ERM.pth"
+    model_filename="./models/wildcam_1501_0.001_40_10000.0_IRM.pth"
+    #model_filename="./models/wildcam_1501_0.001_0_0.0_ERM.pth"
     net = get_net("WILDCAM")
     model = net(n_classes=2)
     print("loading model")
@@ -115,11 +115,12 @@ if __name__ == "__main__":
                           ['../../../data/wildcam_subset_sample/train_46/coyote/59817c02-23d2-11e8-a6a3-ec086b02610b.jpg'], 
                           outfile='./figures/IRM_coyote_explanation.png', 
                           num_samples=1000, num_features=[5], seed=123)
+    '''
     generate_explanations(images = 
                           ['../../../data/wildcam_subset_sample/train_46/raccoon/59c669d3-23d2-11e8-a6a3-ec086b02610b.jpg'], 
                           outfile='./figures/IRM_raccoon_explanation.png', 
                           num_samples=1000, num_features=[10], seed=123)
-    '''
+    
     '''
     generate_explanations(images = 
                           ['../../../data/wildcam_subset_sample/train_46/coyote/59817c02-23d2-11e8-a6a3-ec086b02610b.jpg',
@@ -135,6 +136,7 @@ if __name__ == "__main__":
                           num_samples=1000, num_features=[5, 10, 10, 15, 5, 10, 15, 10, 15], seed=123)
     
     '''
+    '''
     generate_explanations(images = 
                           ['../../../data/wildcam_subset_sample/train_46/coyote/59817c02-23d2-11e8-a6a3-ec086b02610b.jpg',
                            '../../../data/wildcam_subset_sample/train_46/coyote/59e77deb-23d2-11e8-a6a3-ec086b02610b.jpg',
@@ -147,4 +149,4 @@ if __name__ == "__main__":
                            '../../../data/wildcam_subset_sample/test/coyote/592c4d30-23d2-11e8-a6a3-ec086b02610b.jpg'], 
                           outfile='./figures/ERM_results.png', 
                           num_samples=1000, num_features=[5, 10, 10, 15, 5, 10, 15, 10, 15], seed=123)
-   
+   '''
