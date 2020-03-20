@@ -2,6 +2,7 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 import torch.optim as optim
+import mlflow
 
 from torch import autograd
 from torch.utils.data import DataLoader
@@ -91,7 +92,7 @@ class Train:
         pretty_print('step', 'train nll', 'train acc', 'train penalty', 'test nll', 'test acc')
 
         for step in range(self.args['steps']):  
-            for env in self.envs:
+            for env_idx, env in enumerate(self.envs):
                 x = env['images']
                 y = env['labels']
                 loader_tr = DataLoader(self.handler(x, y, transform=self.args['transform']['train']), 
@@ -114,6 +115,12 @@ class Train:
                 env['nll'] = nll / len(loader_tr)
                 env['acc'] = acc / len(loader_tr)
                 env['penalty'] = penalty / len(loader_tr)
+
+                mlflow.log_metrics({
+                    'env_'+str(env_idx)+'loss': env['nll'].item(),
+                    'env_'+str(env_idx)+'acc': env['acc'].item(),
+                    'env_'+str(env_idx)+'penalty': env['penalty'].item()
+                }, step=step)
                 
             train_nll = torch.stack([self.envs[0]['nll'], self.envs[1]['nll']]).mean()
             train_acc = torch.stack([self.envs[0]['acc'], self.envs[1]['acc']]).mean()
@@ -140,8 +147,16 @@ class Train:
             optimizer.step()
             
             _, test_loss, test_acc = self.predict(self.X_te, self.Y_te)            
-            
-            if step % 100 == 0:                 
+           
+            mlflow.log_metrics({
+                'train_loss': train_nll.item(),
+                'train_penalty': train_penalty.item(),
+                'train_acc': train_acc.item(),
+                'test_loss': test_loss.item(),
+                'test_acc': test_acc.item()
+            }, step=step)
+
+            if step % 100 == 0:
                 pretty_print(np.int32(step), train_nll.detach().cpu().numpy(), 
                              train_acc.detach().cpu().numpy(), train_penalty.detach().cpu().numpy(), 
                              test_loss.detach().cpu().numpy(), test_acc.detach().cpu().numpy())
