@@ -117,9 +117,9 @@ class Train:
                 env['penalty'] = penalty / len(loader_tr)
 
                 mlflow.log_metrics({
-                    'env_'+str(env_idx)+'loss': env['nll'].item(),
-                    'env_'+str(env_idx)+'acc': env['acc'].item(),
-                    'env_'+str(env_idx)+'penalty': env['penalty'].item()
+                    'env_'+str(env_idx)+'_loss': env['nll'].item(),
+                    'env_'+str(env_idx)+'_acc': env['acc'].item(),
+                    'env_'+str(env_idx)+'_penalty': env['penalty'].item()
                 }, step=step)
                 
             train_nll = torch.stack([self.envs[0]['nll'], self.envs[1]['nll']]).mean()
