@@ -66,7 +66,7 @@ export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-10.0/lib64
 nvcc --version
 conda install pytorch torchvision cudatoolkit=10.0 -c pytorch
-conda install -c conda-forge matplotlib
+conda install -c conda-forge matplotlib mlflow
 conda install nb_conda
 ```
 
