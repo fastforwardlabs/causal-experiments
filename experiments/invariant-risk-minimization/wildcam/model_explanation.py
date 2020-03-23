@@ -57,12 +57,12 @@ def generate_explanations(images, outfile, num_samples, num_features, seed=123):
     img = get_image(images[0])
     test_pred = batch_predict([pill_transf(img), pill_transf(img)])
     print("test prediction logic", test_pred)
-    fig = plt.figure(constrained_layout=True)
+    fig = plt.figure(constrained_layout=True, figsize=(5, 20))
     spec = gridspec.GridSpec(ncols=3, nrows=len(images), figure=fig)
     i = 0
     for img in images:
         img = get_image(img)
-        explainer = lime_image.LimeImageExplainer(feature_selection='lasso_path', verbose=True, random_state=123)
+        explainer = lime_image.LimeImageExplainer(feature_selection='highest_weights', verbose=True, random_state=123)
     
         explanation = explainer.explain_instance(np.array(pill_transf(img)), 
                                          batch_predict, # classification function
@@ -72,27 +72,25 @@ def generate_explanations(images, outfile, num_samples, num_features, seed=123):
                                          random_seed=seed) 
         print("label: ", explanation.top_labels[0])
         temp, mask = explanation.get_image_and_mask(explanation.top_labels[0], 
-                                            positive_only=True, 
+                                            positive_only=True, negative_only=False, 
                                             num_features=num_features[i], hide_rest=True)
         img_boundry1 = mark_boundaries(temp/255.0, mask)
-
+        
         temp, mask = explanation.get_image_and_mask(explanation.top_labels[0], 
-                                            positive_only=False, 
-                                            num_features=num_features[i], hide_rest=False)
+                                            positive_only=False, negative_only=True,
+                                            num_features=num_features[i], hide_rest=True)
         img_boundry2 = mark_boundaries(temp/255.0, mask)
         
-        f_ax1 = fig.add_subplot(spec[i, 0])
-        f_ax2 = fig.add_subplot(spec[i, 1])
-        f_ax3 = fig.add_subplot(spec[i, 2])
+        f_ax1 = fig.add_subplot(spec[i, 0], xticks=[], yticks=[])
+        f_ax2 = fig.add_subplot(spec[i, 1], xticks=[], yticks=[])
+        f_ax3 = fig.add_subplot(spec[i, 2], xticks=[], yticks=[])
         f_ax1.imshow(img)
         f_ax2.imshow(img_boundry1)
         f_ax3.imshow(img_boundry2)
-        f_ax1.set_yticklabels([])
-        f_ax1.set_xticklabels([])
-        f_ax2.set_yticklabels([])
-        f_ax2.set_xticklabels([])
-        f_ax3.set_yticklabels([])
-        f_ax3.set_xticklabels([])
+        #f_ax1.set_title(f'original image {str(explanation.top_labels[0])}')
+        #f_ax2.set_title(f'features that contribute positively')
+        #f_ax3.set_title(f'features that contribute negatively')
+        
         #f_ax1.set_title("label: "+str(explanation.top_labels[0]), fontsize=5)
         i += 1
     plt.savefig(outfile, dpi=300, bbox_inches='tight', pad_inches=0) # To save figure
@@ -112,16 +110,22 @@ if __name__ == "__main__":
     preprocess_transform = get_preprocess_transform()
     '''
     generate_explanations(images = 
-                          ['../../../data/wildcam_subset_sample/train_46/coyote/59817c02-23d2-11e8-a6a3-ec086b02610b.jpg'], 
+                          [#'../../../data/wildcam_subset_sample/test/coyote/592c4d30-23d2-11e8-a6a3-ec086b02610b.jpg'
+                           '../../../data/wildcam_subset_sample/train_46/coyote/59817c02-23d2-11e8-a6a3-ec086b02610b.jpg'
+                          ], 
                           outfile='./figures/IRM_coyote_explanation.png', 
                           num_samples=1000, num_features=[5], seed=123)
+
+    
+    '''
     '''
     generate_explanations(images = 
                           ['../../../data/wildcam_subset_sample/train_46/raccoon/59c669d3-23d2-11e8-a6a3-ec086b02610b.jpg'], 
                           outfile='./figures/IRM_raccoon_explanation.png', 
                           num_samples=1000, num_features=[10], seed=123)
-    
+
     '''
+    
     generate_explanations(images = 
                           ['../../../data/wildcam_subset_sample/train_46/coyote/59817c02-23d2-11e8-a6a3-ec086b02610b.jpg',
                            '../../../data/wildcam_subset_sample/train_46/coyote/59e77deb-23d2-11e8-a6a3-ec086b02610b.jpg',
@@ -131,11 +135,15 @@ if __name__ == "__main__":
                            '../../../data/wildcam_subset_sample/test/raccoon/5860f06b-23d2-11e8-a6a3-ec086b02610b.jpg',
                            '../../../data/wildcam_subset_sample/test/raccoon/58732ea2-23d2-11e8-a6a3-ec086b02610b.jpg',
                            '../../../data/wildcam_subset_sample/test/raccoon/58a5313e-23d2-11e8-a6a3-ec086b02610b.jpg',
-                           '../../../data/wildcam_subset_sample/test/coyote/592c4d30-23d2-11e8-a6a3-ec086b02610b.jpg'], 
+                           '../../../data/wildcam_subset_sample/test/coyote/592c4d30-23d2-11e8-a6a3-ec086b02610b.jpg',
+                           '../../../data/wildcam_subset_sample/test/coyote/592c4f32-23d2-11e8-a6a3-ec086b02610b.jpg',
+                           '../../../data/wildcam_subset_sample/test/coyote/5858bfd9-23d2-11e8-a6a3-ec086b02610b.jpg',
+                           '../../../data/wildcam_subset_sample/test/coyote/594843d0-23d2-11e8-a6a3-ec086b02610b.jpg'
+                           ], 
                           outfile='./figures/IRM_results.png', 
-                          num_samples=1000, num_features=[5, 10, 10, 15, 5, 10, 15, 10, 15], seed=123)
+                          num_samples=1000, num_features=[5, 10, 10, 15, 5, 10, 15, 10, 15, 10, 10, 10], seed=123)
     
-    '''
+    
     '''
     generate_explanations(images = 
                           ['../../../data/wildcam_subset_sample/train_46/coyote/59817c02-23d2-11e8-a6a3-ec086b02610b.jpg',
@@ -146,7 +154,11 @@ if __name__ == "__main__":
                            '../../../data/wildcam_subset_sample/test/raccoon/5860f06b-23d2-11e8-a6a3-ec086b02610b.jpg',
                            '../../../data/wildcam_subset_sample/test/raccoon/58732ea2-23d2-11e8-a6a3-ec086b02610b.jpg',
                            '../../../data/wildcam_subset_sample/test/raccoon/58a5313e-23d2-11e8-a6a3-ec086b02610b.jpg',
-                           '../../../data/wildcam_subset_sample/test/coyote/592c4d30-23d2-11e8-a6a3-ec086b02610b.jpg'], 
+                           '../../../data/wildcam_subset_sample/test/coyote/592c4d30-23d2-11e8-a6a3-ec086b02610b.jpg',
+                           '../../../data/wildcam_subset_sample/test/coyote/592c4f32-23d2-11e8-a6a3-ec086b02610b.jpg',
+                           '../../../data/wildcam_subset_sample/test/coyote/5858bfd9-23d2-11e8-a6a3-ec086b02610b.jpg',
+                           '../../../data/wildcam_subset_sample/test/coyote/594843d0-23d2-11e8-a6a3-ec086b02610b.jpg'
+                          ], 
                           outfile='./figures/ERM_results.png', 
-                          num_samples=1000, num_features=[5, 10, 10, 15, 5, 10, 15, 10, 15], seed=123)
-   '''
+                          num_samples=1000, num_features=[5, 10, 10, 15, 5, 10, 15, 10, 15, 10, 10, 10], seed=123)
+    '''
