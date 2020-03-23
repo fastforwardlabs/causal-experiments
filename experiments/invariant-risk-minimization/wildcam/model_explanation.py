@@ -87,11 +87,6 @@ def generate_explanations(images, outfile, num_samples, num_features, seed=123):
         f_ax1.imshow(img)
         f_ax2.imshow(img_boundry1)
         f_ax3.imshow(img_boundry2)
-        #f_ax1.set_title(f'original image {str(explanation.top_labels[0])}')
-        #f_ax2.set_title(f'features that contribute positively')
-        #f_ax3.set_title(f'features that contribute negatively')
-        
-        #f_ax1.set_title("label: "+str(explanation.top_labels[0]), fontsize=5)
         i += 1
     plt.savefig(outfile, dpi=300, bbox_inches='tight', pad_inches=0) # To save figure
     plt.show() # To show figure
