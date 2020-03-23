@@ -88,7 +88,7 @@ train_process = Train(envs, x_test, y_test, net, handler, args)
 
 
 start = datetime.now()
-with mlflow.start_run(nested=True):
+with mlflow.start_run():
     
     mlflow.log_params({
         'steps': args['steps'],
