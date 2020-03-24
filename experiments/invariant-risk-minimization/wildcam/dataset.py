@@ -9,9 +9,9 @@ import os
 import os.path
 import errno
 
-def get_dataset(name, path):
+def get_dataset(name, path, overwrite=True):
     if name == 'WILDCAM':
-        return get_WildCam(path, overwrite=True)
+        return get_WildCam(path, overwrite=overwrite)
 
 class WildCamFolder(Dataset):
     '''
