@@ -13,12 +13,13 @@ from datetime import datetime
 
 seed = 123
 dataset_name = 'WILDCAM'
-dataset_path = '/datapool/wildcam/wildcam_subset_sample'
+#dataset_path = '/datapool/wildcam/wildcam_subset_sample'
+dataset_path = '/datapool/wildcam/wildcam_subset_denoised'
 
 args_pool = {
     'WILDCAM': {
-        'n_restarts': 3,
-        'steps': 5,
+        'n_restarts': 1,
+        'steps': 101,
         'n_classes': 2,
         'fc_only': True,
         'model_path': "./models/",
@@ -45,16 +46,16 @@ args_pool = {
             'num_workers': 1
         },
         'optimizer_args': {
-            'lr': 0.001,
+            'lr': 0.01,
             'l2_regularizer_weight': 0.001,
-            'penalty_anneal_iters': 40, # make this 0 for ERM
-            'penalty_weight': 10000.0 # make this 0 for ERM
+            'penalty_anneal_iters': 0, # make this 0 for ERM
+            'penalty_weight': 0.0 # make this 0 for ERM
         }
     }
 }
 
 args = args_pool[dataset_name]
-model_name = args['model_path'] + "wildcam_" + str(args['steps']) + "_" + str(args['optimizer_args']['lr']) + "_" + str(args['optimizer_args']['penalty_anneal_iters']) + "_" + str(args['optimizer_args']['penalty_weight']) + "_"
+model_name = args['model_path'] + "wildcam_denoised_" + str(args['steps']) + "_" + str(args['optimizer_args']['lr']) + "_" + str(args['optimizer_args']['penalty_anneal_iters']) + "_" + str(args['optimizer_args']['penalty_weight']) + "_"
 
 np.random.seed(seed)
 torch.manual_seed(seed)
@@ -91,6 +92,7 @@ start = datetime.now()
 with mlflow.start_run():
     
     mlflow.log_params({
+        'dataset': dataset_path,
         'steps': args['steps'],
         'lr': args['optimizer_args']['lr'],
         'penalty_anneal_iters': args['optimizer_args']['penalty_anneal_iters'],

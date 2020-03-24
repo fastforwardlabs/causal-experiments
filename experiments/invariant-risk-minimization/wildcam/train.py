@@ -156,7 +156,7 @@ class Train:
                 'test_acc': test_acc.item()
             }, step=step)
 
-            if step % 100 == 0:
+            if step % 10 == 0:
                 pretty_print(np.int32(step), train_nll.detach().cpu().numpy(), 
                              train_acc.detach().cpu().numpy(), train_penalty.detach().cpu().numpy(), 
                              test_loss.detach().cpu().numpy(), test_acc.detach().cpu().numpy())

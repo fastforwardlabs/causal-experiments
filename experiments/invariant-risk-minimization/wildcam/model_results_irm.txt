@@ -593,3 +593,290 @@ Final train acc (mean/std across restarts so far):
 Final test acc (mean/std across restarts so far):
 0.7541 0.0
 time for training:  2 days -999999999 days, 0:00:00 minutes and 12053 seconds.
+nohup: ignoring input
+/datapool/wildcam/wildcam_subset_denoised/train_43
+== Found 858 items 
+== Found 2 classes
+train environment:  43
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641da0-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641dec-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641ea4-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641edd-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/train_46
+== Found 753 items 
+== Found 2 classes
+train environment:  46
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/59641e0b-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965aa9d-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965ab08-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965ac1c-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/test
+== Found 522 items 
+== Found 2 classes
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858bffe-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858c09a-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858c226-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/585a621c-23d2-11e8-a6a3-ec086b02610b.jpg']
+working with 2 training environments: 
+env['images']:  858
+env['labels']:  858
+env['images']:  753
+env['labels']:  753
+x_test:  522
+y_test:  522
+Using GPU - True
+
+========================================IRM========================================
+{'n_restarts': 1, 'steps': 100, 'n_classes': 2, 'fc_only': True, 'model_path': './models/', 'transform': {'train': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+), 'test': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+)}, 'loader_tr_args': {'batch_size': 100, 'num_workers': 1}, 'loader_te_args': {'batch_size': 100, 'num_workers': 1}, 'loader_sample_args': {'batch_size': 100, 'num_workers': 1}, 'optimizer_args': {'lr': 0.001, 'l2_regularizer_weight': 0.001, 'penalty_anneal_iters': 40, 'penalty_weight': 10000.0}}
+Restart 0
+feature extraction
+step            train nll       train acc       train penalty   test nll        test acc     
+/home/nisha/anaconda3/envs/irm/lib/python3.7/site-packages/torchvision/io/video.py:2: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+0               0.84109         0.30811         0.03086         0.82450         0.26864      
+10              0.53936         0.68165         0.00364         0.95835         0.27970      
+20              0.41672         0.79612         0.01646         0.84358         0.26439      
+30              0.36414         0.81310         0.00926         0.84305         0.29652      
+40              0.32607         0.85530         0.00997         0.73838         0.34045      
+50              0.31346         0.85562         0.00777         0.71546         0.39227      
+60              0.30803         0.86706         0.00707         0.70202         0.41152      
+70              0.30712         0.85797         0.00575         0.70929         0.43591      
+80              0.30417         0.86502         0.00445         0.66113         0.51864      
+90              0.31171         0.85788         0.00264         0.62436         0.59439      
+Final train acc (mean/std across restarts so far):
+0.8504 0.0
+Final test acc (mean/std across restarts so far):
+0.7086 0.0
+time for training:  0 -999999999 days, 0:00:00 minutes and 3261 seconds.
+nohup: ignoring input
+/datapool/wildcam/wildcam_subset_denoised/train_43
+== Found 858 items 
+== Found 2 classes
+train environment:  43
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641da0-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641dec-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641ea4-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641edd-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/train_46
+== Found 753 items 
+== Found 2 classes
+train environment:  46
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/59641e0b-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965aa9d-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965ab08-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965ac1c-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/test
+== Found 522 items 
+== Found 2 classes
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858bffe-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858c09a-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858c226-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/585a621c-23d2-11e8-a6a3-ec086b02610b.jpg']
+working with 2 training environments: 
+env['images']:  858
+env['labels']:  858
+env['images']:  753
+env['labels']:  753
+x_test:  522
+y_test:  522
+Using GPU - True
+
+========================================IRM========================================
+{'n_restarts': 1, 'steps': 501, 'n_classes': 2, 'fc_only': True, 'model_path': './models/', 'transform': {'train': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+), 'test': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+)}, 'loader_tr_args': {'batch_size': 100, 'num_workers': 1}, 'loader_te_args': {'batch_size': 100, 'num_workers': 1}, 'loader_sample_args': {'batch_size': 100, 'num_workers': 1}, 'optimizer_args': {'lr': 0.001, 'l2_regularizer_weight': 0.001, 'penalty_anneal_iters': 40, 'penalty_weight': 10000.0}}
+Restart 0
+feature extraction
+step            train nll       train acc       train penalty   test nll        test acc     
+/home/nisha/anaconda3/envs/irm/lib/python3.7/site-packages/torchvision/io/video.py:2: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+0               0.84109         0.30811         0.03086         0.82450         0.26864      
+100             0.32642         0.84860         0.00171         0.54132         0.75061      
+200             0.32622         0.84589         0.00199         0.56496         0.70030      
+300             0.32423         0.84774         0.00123         0.61386         0.59667      
+400             0.32176         0.84697         0.00163         0.61475         0.57091      
+500             0.32179         0.83095         0.00149         0.79975         0.34394      
+Final train acc (mean/std across restarts so far):
+0.831 0.0
+Final test acc (mean/std across restarts so far):
+0.3439 0.0
+time for training:  0 -999999999 days, 0:00:00 minutes and 16701 seconds.
+
+nohup: ignoring input
+/datapool/wildcam/wildcam_subset_denoised/train_43
+== Found 858 items 
+== Found 2 classes
+train environment:  43
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641da0-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641dec-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641ea4-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641edd-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/train_46
+== Found 753 items 
+== Found 2 classes
+train environment:  46
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/59641e0b-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965aa9d-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965ab08-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965ac1c-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/test
+== Found 522 items 
+== Found 2 classes
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858bffe-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858c09a-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858c226-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/585a621c-23d2-11e8-a6a3-ec086b02610b.jpg']
+working with 2 training environments: 
+env['images']:  858
+env['labels']:  858
+env['images']:  753
+env['labels']:  753
+x_test:  522
+y_test:  522
+Using GPU - True
+
+========================================IRM========================================
+{'n_restarts': 1, 'steps': 301, 'n_classes': 2, 'fc_only': True, 'model_path': './models/', 'transform': {'train': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+), 'test': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+)}, 'loader_tr_args': {'batch_size': 100, 'num_workers': 1}, 'loader_te_args': {'batch_size': 100, 'num_workers': 1}, 'loader_sample_args': {'batch_size': 100, 'num_workers': 1}, 'optimizer_args': {'lr': 0.001, 'l2_regularizer_weight': 0.001, 'penalty_anneal_iters': 40, 'penalty_weight': 10000.0}}
+Restart 0
+feature extraction
+step            train nll       train acc       train penalty   test nll        test acc     
+/home/nisha/anaconda3/envs/irm/lib/python3.7/site-packages/torchvision/io/video.py:2: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+0               0.84109         0.30811         0.03086         0.82450         0.26864      
+10              0.53936         0.68165         0.00364         0.95835         0.27970      
+20              0.41672         0.79612         0.01646         0.84358         0.26439      
+30              0.36414         0.81310         0.00926         0.84305         0.29652      
+40              0.32607         0.85530         0.00997         0.73838         0.34045      
+50              0.31346         0.85562         0.00777         0.71546         0.39227      
+60              0.30803         0.86706         0.00707         0.70202         0.41152      
+70              0.30712         0.85797         0.00575         0.70929         0.43591      
+80              0.30417         0.86502         0.00445         0.66113         0.51864      
+90              0.31171         0.85788         0.00264         0.62436         0.59439      
+100             0.32642         0.84860         0.00171         0.54132         0.75061      
+110             0.33683         0.84744         0.00287         0.55304         0.75197      
+120             0.33071         0.85032         0.00151         0.52885         0.78712      
+130             0.33062         0.84960         0.00175         0.55930         0.71106      
+140             0.32692         0.84731         0.00126         0.56280         0.72136      
+150             0.32922         0.84983         0.00171         0.57087         0.70848      
+160             0.32488         0.85039         0.00191         0.57061         0.70682      
+170             0.32854         0.84922         0.00210         0.55443         0.72879      
+180             0.32747         0.84714         0.00280         0.59351         0.65833      
+190             0.33296         0.84434         0.00173         0.57063         0.68758      
+200             0.32622         0.84589         0.00199         0.56496         0.70030      
+210             0.32596         0.84329         0.00143         0.57684         0.67288      
+220             0.32566         0.85087         0.00289         0.57216         0.68197      
+230             0.32503         0.84589         0.00246         0.56549         0.71227      
+240             0.32469         0.84321         0.00119         0.57832         0.66530      
+250             0.32400         0.84421         0.00160         0.58598         0.65182      
+260             0.32575         0.84806         0.00166         0.58086         0.64288      
+270             0.32160         0.84869         0.00066         0.59595         0.64758      
+280             0.32286         0.85226         0.00243         0.59162         0.65288      
+290             0.31564         0.84996         0.00166         0.61849         0.58909      
+300             0.32423         0.84774         0.00123         0.61386         0.59667      
+Final train acc (mean/std across restarts so far):
+0.8477 0.0
+Final test acc (mean/std across restarts so far):
+0.5967 0.0
+time for training:  0 -999999999 days, 0:00:00 minutes and 10086 seconds.
+
+nohup: ignoring input
+/datapool/wildcam/wildcam_subset_denoised/train_43
+== Found 858 items 
+== Found 2 classes
+train environment:  43
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641da0-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641dec-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641ea4-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641edd-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/train_46
+== Found 753 items 
+== Found 2 classes
+train environment:  46
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/59641e0b-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965aa9d-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965ab08-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965ac1c-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/test
+== Found 522 items 
+== Found 2 classes
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858bffe-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858c09a-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858c226-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/585a621c-23d2-11e8-a6a3-ec086b02610b.jpg']
+working with 2 training environments: 
+env['images']:  858
+env['labels']:  858
+env['images']:  753
+env['labels']:  753
+x_test:  522
+y_test:  522
+Using GPU - True
+
+========================================IRM========================================
+{'n_restarts': 1, 'steps': 501, 'n_classes': 2, 'fc_only': True, 'model_path': './models/', 'transform': {'train': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+), 'test': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+)}, 'loader_tr_args': {'batch_size': 100, 'num_workers': 1}, 'loader_te_args': {'batch_size': 100, 'num_workers': 1}, 'loader_sample_args': {'batch_size': 100, 'num_workers': 1}, 'optimizer_args': {'lr': 0.001, 'l2_regularizer_weight': 0.001, 'penalty_anneal_iters': 100, 'penalty_weight': 10000.0}}
+Restart 0
+feature extraction
+step            train nll       train acc       train penalty   test nll        test acc     
+/home/nisha/anaconda3/envs/irm/lib/python3.7/site-packages/torchvision/io/video.py:2: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+0               0.84109         0.30811         0.03086         0.82450         0.26864      
+100             0.25581         0.88847         0.00478         0.83372         0.31561      
+200             0.27558         0.86553         0.00244         0.62436         0.58773      
+300             0.27790         0.86771         0.00161         0.65449         0.52909      
+400             0.27771         0.86715         0.00246         0.62645         0.55258      
+500             0.26486         0.87462         0.00205         0.68660         0.48242      
+Final train acc (mean/std across restarts so far):
+0.8746 0.0
+Final test acc (mean/std across restarts so far):
+0.4824 0.0
+time for training:  0 -999999999 days, 0:00:00 minutes and 16141 seconds.

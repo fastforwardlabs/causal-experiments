@@ -1,0 +1,15 @@
+artifact_uri: file:///home/nisha/causal-experiments/experiments/invariant-risk-minimization/wildcam/mlruns/0/331250eb4a04466fab476d77d8164923/artifacts
+end_time: 1585026128857
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: 331250eb4a04466fab476d77d8164923
+run_uuid: 331250eb4a04466fab476d77d8164923
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1585016051764
+status: 3
+tags: []
+user_id: nisha
