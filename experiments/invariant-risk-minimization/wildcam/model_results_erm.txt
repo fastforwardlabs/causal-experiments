@@ -765,3 +765,604 @@ step            train nll       train acc       train penalty   test nll        
 110             0.24329         0.90013         0.00627         0.89924         0.29288      
 120             0.22802         0.91300         0.00661         0.83968         0.33152      
 130             0.22899         0.90929         0.00632         0.91756         0.30455      
+140             0.22099         0.91324         0.00645         0.91424         0.30030      
+150             0.21630         0.91047         0.00635         0.90706         0.32636      
+160             0.20861         0.92101         0.00663         0.92787         0.31712      
+170             0.20986         0.92048         0.00640         0.93539         0.31121      
+180             0.20411         0.92230         0.00725         0.94572         0.31545      
+190             0.20860         0.92263         0.00586         0.91494         0.34652      
+200             0.19707         0.92437         0.00639         0.90479         0.34985      
+210             0.19607         0.92355         0.00678         0.95587         0.32212      
+220             0.19587         0.92469         0.00690         0.92410         0.33545      
+230             0.19107         0.92349         0.00587         0.90146         0.35561      
+240             0.18739         0.92826         0.00603         0.93638         0.33803      
+250             0.18098         0.93432         0.00726         0.91957         0.35394      
+260             0.18443         0.92973         0.00566         0.89952         0.35136      
+270             0.17434         0.93742         0.00675         0.93691         0.35561      
+280             0.17591         0.93658         0.00605         0.90106         0.35970      
+290             0.16794         0.93463         0.00685         0.94872         0.34470      
+300             0.17195         0.93247         0.00645         0.91422         0.36561      
+310             0.16933         0.93916         0.00569         0.87613         0.39242      
+320             0.16459         0.93947         0.00644         0.89705         0.39500      
+330             0.16195         0.94525         0.00632         0.93863         0.35621      
+340             0.16414         0.93807         0.00595         0.93416         0.37303      
+350             0.15525         0.94515         0.00593         0.87959         0.40045      
+360             0.15188         0.94906         0.00666         0.90203         0.39485      
+370             0.15762         0.94427         0.00630         0.89716         0.39561      
+380             0.15365         0.94606         0.00611         0.88175         0.40061      
+390             0.14951         0.94442         0.00575         0.89341         0.41652      
+400             0.15330         0.94938         0.00632         0.84101         0.46379      
+410             0.14491         0.95057         0.00608         0.85510         0.44258      
+420             0.15539         0.94679         0.00542         0.90583         0.42591      
+430             0.14275         0.95574         0.00661         0.84965         0.43924      
+440             0.14071         0.94967         0.00570         0.85645         0.44424      
+450             0.15272         0.94328         0.00557         0.79013         0.48364      
+460             0.15430         0.95014         0.00766         0.86100         0.43061      
+470             0.14222         0.94951         0.00565         0.80676         0.47030      
+480             0.13995         0.95710         0.00557         0.85316         0.45848      
+490             0.13957         0.94795         0.00607         0.82714         0.47106      
+500             0.13460         0.95051         0.00577         0.87677         0.44470      
+510             0.13489         0.95488         0.00506         0.84029         0.45667      
+520             0.14535         0.94165         0.00546         0.80500         0.49030      
+530             0.13013         0.95870         0.00593         0.84743         0.47758      
+540             0.12617         0.95883         0.00595         0.85242         0.46409      
+550             0.12973         0.95538         0.00541         0.85334         0.44470      
+560             0.13420         0.95375         0.00541         0.81823         0.47424      
+570             0.13419         0.95130         0.00483         0.85139         0.46500      
+580             0.13464         0.95202         0.00485         0.81019         0.47833      
+590             0.12634         0.96204         0.00531         0.86433         0.45227      
+600             0.12560         0.95807         0.00527         0.87160         0.47500      
+610             0.12694         0.95887         0.00556         0.85585         0.47242      
+620             0.12424         0.96045         0.00562         0.87229         0.45561      
+630             0.12488         0.95759         0.00486         0.77541         0.49576      
+640             0.12125         0.96293         0.00547         0.84344         0.46985      
+650             0.11944         0.96063         0.00489         0.85316         0.47318      
+660             0.13214         0.95169         0.00475         0.81369         0.50242      
+670             0.11702         0.96413         0.00528         0.87175         0.46561      
+680             0.12502         0.95502         0.00479         0.84148         0.48576      
+690             0.11631         0.96905         0.00578         0.84156         0.49348      
+700             0.11509         0.96286         0.00538         0.86507         0.49848      
+Final train acc (mean/std across restarts so far):
+0.9629 0.0
+Final test acc (mean/std across restarts so far):
+0.4985 0.0
+time for training:  0 -999999999 days, 0:00:00 minutes and 23195 seconds.
+
+
+nohup: ignoring input
+/datapool/wildcam/wildcam_subset_denoised/train_43
+== Found 858 items 
+== Found 2 classes
+train environment:  43
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641da0-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641dec-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641ea4-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641edd-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/train_46
+== Found 753 items 
+== Found 2 classes
+train environment:  46
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/59641e0b-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965aa9d-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965ab08-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965ac1c-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/test
+== Found 522 items 
+== Found 2 classes
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858bffe-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858c09a-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858c226-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/585a621c-23d2-11e8-a6a3-ec086b02610b.jpg']
+working with 2 training environments: 
+env['images']:  858
+env['labels']:  858
+env['images']:  753
+env['labels']:  753
+x_test:  522
+y_test:  522
+Using GPU - True
+
+========================================ERM========================================
+{'n_restarts': 1, 'steps': 1501, 'n_classes': 2, 'fc_only': True, 'model_path': './models/', 'transform': {'train': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+), 'test': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+)}, 'loader_tr_args': {'batch_size': 100, 'num_workers': 1}, 'loader_te_args': {'batch_size': 100, 'num_workers': 1}, 'loader_sample_args': {'batch_size': 100, 'num_workers': 1}, 'optimizer_args': {'lr': 0.001, 'l2_regularizer_weight': 0.001, 'penalty_anneal_iters': 0, 'penalty_weight': 0.0}}
+Restart 0
+feature extraction
+step            train nll       train acc       train penalty   test nll        test acc     
+/home/nisha/anaconda3/envs/irm/lib/python3.7/site-packages/torchvision/io/video.py:2: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+0               0.84109         0.30811         0.03086         0.82358         0.27030      
+10              0.53875         0.68165         0.00373         1.01078         0.28136      
+20              0.40676         0.83993         0.02134         0.74643         0.35470      
+30              0.34476         0.84455         0.01158         0.78440         0.31485      
+40              0.31410         0.86211         0.00906         0.73021         0.36136      
+50              0.29643         0.86304         0.00719         0.79445         0.31712      
+60              0.28198         0.87876         0.00734         0.76883         0.34985      
+70              0.27120         0.88437         0.00647         0.82924         0.30530      
+80              0.25896         0.89334         0.00640         0.83741         0.30636      
+90              0.25007         0.89584         0.00613         0.85735         0.29530      
+100             0.24391         0.90644         0.00642         0.85584         0.29879      
+110             0.24329         0.90013         0.00627         0.89924         0.29288      
+120             0.22802         0.91300         0.00661         0.83968         0.33152      
+130             0.22899         0.90929         0.00632         0.91756         0.30455      
+140             0.22099         0.91324         0.00645         0.91424         0.30030      
+150             0.21630         0.91047         0.00635         0.90706         0.32636      
+160             0.20861         0.92101         0.00663         0.92787         0.31712      
+170             0.20986         0.92048         0.00640         0.93539         0.31121      
+180             0.20411         0.92230         0.00725         0.94572         0.31545      
+190             0.20860         0.92263         0.00586         0.91494         0.34652      
+200             0.19707         0.92437         0.00639         0.90479         0.34985      
+210             0.19607         0.92355         0.00678         0.95587         0.32212      
+220             0.19587         0.92469         0.00690         0.92410         0.33545      
+230             0.19107         0.92349         0.00587         0.90146         0.35561      
+240             0.18739         0.92826         0.00603         0.93638         0.33803      
+250             0.18098         0.93432         0.00726         0.91957         0.35394      
+260             0.18443         0.92973         0.00566         0.89952         0.35136      
+270             0.17434         0.93742         0.00675         0.93691         0.35561      
+280             0.17591         0.93658         0.00605         0.90106         0.35970      
+290             0.16794         0.93463         0.00685         0.94872         0.34470      
+300             0.17195         0.93247         0.00645         0.91422         0.36561      
+310             0.16933         0.93916         0.00569         0.87613         0.39242      
+320             0.16459         0.93947         0.00644         0.89705         0.39500      
+330             0.16195         0.94525         0.00632         0.93863         0.35621      
+340             0.16414         0.93807         0.00595         0.93416         0.37303      
+350             0.15525         0.94515         0.00593         0.87959         0.40045      
+360             0.15188         0.94906         0.00666         0.90203         0.39485      
+370             0.15762         0.94427         0.00630         0.89716         0.39561      
+380             0.15365         0.94606         0.00611         0.88175         0.40061      
+390             0.14951         0.94442         0.00575         0.89341         0.41652      
+400             0.15330         0.94938         0.00632         0.84101         0.46379      
+410             0.14491         0.95057         0.00608         0.85510         0.44258      
+420             0.15539         0.94679         0.00542         0.90583         0.42591      
+430             0.14275         0.95574         0.00661         0.84965         0.43924      
+440             0.14071         0.94967         0.00570         0.85645         0.44424      
+450             0.15272         0.94328         0.00557         0.79013         0.48364      
+460             0.15430         0.95014         0.00766         0.86100         0.43061      
+470             0.14222         0.94951         0.00565         0.80676         0.47030      
+480             0.13995         0.95710         0.00557         0.85316         0.45848      
+490             0.13957         0.94795         0.00607         0.82714         0.47106      
+500             0.13460         0.95051         0.00577         0.87677         0.44470      
+510             0.13489         0.95488         0.00506         0.84029         0.45667      
+520             0.14535         0.94165         0.00546         0.80500         0.49030      
+530             0.13013         0.95870         0.00593         0.84743         0.47758      
+540             0.12617         0.95883         0.00595         0.85242         0.46409      
+550             0.12973         0.95538         0.00541         0.85334         0.44470      
+560             0.13420         0.95375         0.00541         0.81823         0.47424      
+570             0.13419         0.95130         0.00483         0.85139         0.46500      
+580             0.13464         0.95202         0.00485         0.81019         0.47833      
+590             0.12634         0.96204         0.00531         0.86433         0.45227      
+600             0.12560         0.95807         0.00527         0.87160         0.47500      
+610             0.12694         0.95887         0.00556         0.85585         0.47242      
+620             0.12424         0.96045         0.00562         0.87229         0.45561      
+630             0.12488         0.95759         0.00486         0.77541         0.49576      
+640             0.12125         0.96293         0.00547         0.84344         0.46985      
+650             0.11944         0.96063         0.00489         0.85316         0.47318      
+660             0.13214         0.95169         0.00475         0.81369         0.50242      
+670             0.11702         0.96413         0.00528         0.87175         0.46561      
+680             0.12502         0.95502         0.00479         0.84148         0.48576      
+690             0.11631         0.96905         0.00578         0.84156         0.49348      
+700             0.11509         0.96286         0.00538         0.86507         0.49848      
+710             0.12305         0.95952         0.00520         0.78764         0.50909      
+720             0.11125         0.97000         0.00577         0.88381         0.47061      
+730             0.11212         0.96398         0.00510         0.80297         0.50667      
+740             0.11064         0.96889         0.00522         0.88855         0.47379      
+750             0.11313         0.96583         0.00474         0.80289         0.49833      
+760             0.11390         0.96366         0.00512         0.86485         0.48742      
+770             0.11001         0.96580         0.00522         0.84624         0.48152      
+780             0.11720         0.96342         0.00469         0.85427         0.49152      
+790             0.10738         0.96322         0.00486         0.79730         0.51742      
+800             0.10705         0.96913         0.00528         0.85771         0.49833      
+810             0.11147         0.96459         0.00477         0.86199         0.49742      
+820             0.10798         0.97014         0.00566         0.89316         0.46970      
+830             0.10597         0.96821         0.00449         0.87173         0.50500      
+840             0.10538         0.96309         0.00508         0.80232         0.54121      
+850             0.10533         0.97002         0.00503         0.84839         0.50258      
+860             0.10849         0.95983         0.00487         0.85644         0.51773      
+870             0.11193         0.96366         0.00503         0.87527         0.48742      
+880             0.10958         0.96451         0.00434         0.83834         0.50758      
+890             0.10864         0.96782         0.00432         0.86505         0.49667      
+900             0.09588         0.97660         0.00540         0.88550         0.49152      
+910             0.10236         0.97017         0.00434         0.84946         0.49818      
+920             0.09805         0.97320         0.00475         0.89399         0.47985      
+930             0.10060         0.97134         0.00471         0.84340         0.52030      
+940             0.10260         0.96717         0.00443         0.88361         0.49576      
+950             0.11428         0.96364         0.00379         0.83370         0.51667      
+960             0.09918         0.97043         0.00450         0.85246         0.49818      
+970             0.10981         0.96660         0.00443         0.85511         0.51258      
+980             0.09965         0.96463         0.00409         0.82991         0.51803      
+990             0.10738         0.96302         0.00415         0.84414         0.50727      
+1000            0.09339         0.97335         0.00467         0.87040         0.50000      
+1010            0.09634         0.97752         0.00500         0.82435         0.53515      
+1020            0.09423         0.97212         0.00466         0.86412         0.50242      
+1030            0.08916         0.97939         0.00496         0.84988         0.49742      
+1040            0.10213         0.97202         0.00486         0.87424         0.49742      
+1050            0.10128         0.96770         0.00470         0.78289         0.54682      
+1060            0.09139         0.97378         0.00445         0.85539         0.52424      
+1070            0.10554         0.96605         0.00383         0.81561         0.56621      
+1080            0.08870         0.97493         0.00483         0.82563         0.52667      
+1090            0.09291         0.97174         0.00423         0.86730         0.51091      
+1100            0.09624         0.97306         0.00403         0.88434         0.50076      
+1110            0.09152         0.97177         0.00412         0.87650         0.52333      
+1120            0.08971         0.97384         0.00450         0.92259         0.48727      
+1130            0.09036         0.97667         0.00423         0.88265         0.49394      
+1140            0.09282         0.97488         0.00410         0.86773         0.52106      
+1150            0.09305         0.97528         0.00396         0.79731         0.55955      
+1160            0.08911         0.97564         0.00449         0.86916         0.52167      
+1170            0.08589         0.97759         0.00464         0.88709         0.49485      
+1180            0.09615         0.97357         0.00431         0.83356         0.54106      
+1190            0.08954         0.97377         0.00395         0.86307         0.52333      
+1200            0.09039         0.97143         0.00377         0.85128         0.50727      
+1210            0.09270         0.97347         0.00383         0.88412         0.51076      
+1220            0.09044         0.98002         0.00390         0.91920         0.49742      
+1230            0.08572         0.98021         0.00466         0.89856         0.51667      
+1240            0.09061         0.97715         0.00404         0.86285         0.52333      
+1250            0.08051         0.97952         0.00440         0.91682         0.51076      
+1260            0.08677         0.97525         0.00436         0.91313         0.49561      
+1270            0.08752         0.97357         0.00396         0.87261         0.52682      
+1280            0.09138         0.97556         0.00369         0.83103         0.54606      
+1290            0.08317         0.98007         0.00427         0.86240         0.52591      
+1300            0.08379         0.97705         0.00413         0.86222         0.53106      
+1310            0.09370         0.97106         0.00444         0.92358         0.48212      
+1320            0.08721         0.97250         0.00393         0.85860         0.53015      
+1330            0.08548         0.97396         0.00453         0.87722         0.51667      
+1340            0.08149         0.98146         0.00428         0.84513         0.54197      
+1350            0.08512         0.97295         0.00394         0.89559         0.51242      
+1360            0.08194         0.97649         0.00403         0.86395         0.52091      
+1370            0.08945         0.97467         0.00408         0.92094         0.51167      
+1380            0.08540         0.97401         0.00392         0.85706         0.52348      
+1390            0.08572         0.97335         0.00399         0.91864         0.48894      
+1400            0.08101         0.97634         0.00399         0.91637         0.49303      
+1410            0.08253         0.97688         0.00412         0.89687         0.52848      
+1420            0.07891         0.98121         0.00429         0.91822         0.49985      
+1430            0.07868         0.97771         0.00402         0.87710         0.53106      
+1440            0.07431         0.98146         0.00417         0.95739         0.48894      
+1450            0.08384         0.97293         0.00391         0.83062         0.54864      
+1460            0.08238         0.97903         0.00369         0.88550         0.51152      
+1470            0.07885         0.97814         0.00433         0.84029         0.55379      
+1480            0.08301         0.97885         0.00381         0.95044         0.48636      
+1490            0.07653         0.97870         0.00390         0.92567         0.51167      
+1500            0.08081         0.97507         0.00403         0.86422         0.53515      
+Final train acc (mean/std across restarts so far):
+0.9751 0.0
+Final test acc (mean/std across restarts so far):
+0.5352 0.0
+time for training:  0 -999999999 days, 0:00:00 minutes and 49824 seconds.
+
+nohup: ignoring input
+/datapool/wildcam/wildcam_subset_denoised/train_43
+== Found 858 items 
+== Found 2 classes
+train environment:  43
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641da0-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641dec-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641ea4-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641edd-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/train_46
+== Found 753 items 
+== Found 2 classes
+train environment:  46
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/59641e0b-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965aa9d-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965ab08-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965ac1c-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/test
+== Found 522 items 
+== Found 2 classes
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858bffe-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858c09a-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858c226-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/585a621c-23d2-11e8-a6a3-ec086b02610b.jpg']
+working with 2 training environments: 
+env['images']:  858
+env['labels']:  858
+env['images']:  753
+env['labels']:  753
+x_test:  522
+y_test:  522
+Using GPU - True
+
+========================================ERM========================================
+{'n_restarts': 1, 'steps': 101, 'n_classes': 2, 'fc_only': True, 'model_path': './models/', 'transform': {'train': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+), 'test': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+)}, 'loader_tr_args': {'batch_size': 100, 'num_workers': 1}, 'loader_te_args': {'batch_size': 100, 'num_workers': 1}, 'loader_sample_args': {'batch_size': 100, 'num_workers': 1}, 'optimizer_args': {'lr': 0.01, 'l2_regularizer_weight': 0.001, 'penalty_anneal_iters': 0, 'penalty_weight': 0.0}}
+Restart 0
+feature extraction
+step            train nll       train acc       train penalty   test nll        test acc     
+/home/nisha/anaconda3/envs/irm/lib/python3.7/site-packages/torchvision/io/video.py:2: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+0               0.84109         0.30811         0.03086         2.98798         0.25773      
+10              0.41702         0.71978         0.02863         1.40622         0.28136      
+20              0.27117         0.87124         0.00496         1.27053         0.25606      
+30              0.25360         0.88533         0.00776         0.90736         0.34409      
+40              0.22257         0.90022         0.00274         0.89506         0.33879      
+50              0.20724         0.91077         0.00408         0.87777         0.35561      
+60              0.18850         0.92380         0.00500         0.85249         0.39833      
+70              0.17764         0.93144         0.00407         0.89343         0.35773      
+80              0.16881         0.93381         0.00438         0.87391         0.40742      
+90              0.15572         0.94624         0.00574         0.93967         0.36712      
+100             0.15379         0.94716         0.00561         0.88320         0.40803      
+Final train acc (mean/std across restarts so far):
+0.9472 0.0
+Final test acc (mean/std across restarts so far):
+0.408 0.0
+time for training:  0 -999999999 days, 0:00:00 minutes and 3680 seconds.
+nohup: ignoring input
+/datapool/wildcam/wildcam_subset_denoised/train_43
+== Found 858 items 
+== Found 2 classes
+train environment:  43
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641da0-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641dec-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641ea4-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641edd-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/train_46
+== Found 753 items 
+== Found 2 classes
+train environment:  46
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/59641e0b-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965aa9d-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965ab08-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965ac1c-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/test
+== Found 522 items 
+== Found 2 classes
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858bffe-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858c09a-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858c226-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/585a621c-23d2-11e8-a6a3-ec086b02610b.jpg']
+working with 2 training environments: 
+env['images']:  858
+env['labels']:  858
+env['images']:  753
+env['labels']:  753
+x_test:  522
+y_test:  522
+Using GPU - True
+
+========================================ERM========================================
+{'n_restarts': 1, 'steps': 401, 'n_classes': 2, 'fc_only': True, 'model_path': './models/', 'transform': {'train': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+), 'test': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+)}, 'loader_tr_args': {'batch_size': 100, 'num_workers': 1}, 'loader_te_args': {'batch_size': 100, 'num_workers': 1}, 'loader_sample_args': {'batch_size': 100, 'num_workers': 1}, 'optimizer_args': {'lr': 0.01, 'l2_regularizer_weight': 0.001, 'penalty_anneal_iters': 0, 'penalty_weight': 0.0}}
+Restart 0
+feature extraction
+step            train nll       train acc       train penalty   test nll        test acc     
+/home/nisha/anaconda3/envs/irm/lib/python3.7/site-packages/torchvision/io/video.py:2: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+0               0.84109         0.30811         0.03086         2.98798         0.25773      
+10              0.41702         0.71978         0.02863         1.40622         0.28136      
+20              0.27117         0.87124         0.00496         1.27053         0.25606      
+30              0.25360         0.88533         0.00776         0.90736         0.34409      
+40              0.22257         0.90022         0.00274         0.89506         0.33879      
+50              0.20724         0.91077         0.00408         0.87777         0.35561      
+60              0.18850         0.92380         0.00500         0.85249         0.39833      
+70              0.17764         0.93144         0.00407         0.89343         0.35773      
+80              0.16881         0.93381         0.00438         0.87391         0.40742      
+90              0.15572         0.94624         0.00574         0.93967         0.36712      
+100             0.15379         0.94716         0.00561         0.88320         0.40803      
+110             0.15331         0.93929         0.00508         0.90228         0.40894      
+120             0.14014         0.95252         0.00506         0.79814         0.47924      
+130             0.14099         0.94981         0.00532         0.85184         0.46152      
+140             0.13479         0.94843         0.00478         0.80045         0.47333      
+150             0.12858         0.95478         0.00525         0.77549         0.50227      
+160             0.12251         0.96105         0.00499         0.80874         0.48409      
+170             0.12567         0.96003         0.00474         0.87945         0.47576      
+180             0.11988         0.95653         0.00484         0.85689         0.49258      
+190             0.12406         0.95890         0.00422         0.77821         0.53697      
+200             0.11580         0.96285         0.00477         0.79126         0.51318      
+210             0.11684         0.95927         0.00487         0.83117         0.53000      
+220             0.11833         0.96021         0.00494         0.77246         0.53909      
+230             0.11393         0.96164         0.00427         0.80690         0.53242      
+240             0.10728         0.96609         0.00459         0.83645         0.52409      
+250             0.10368         0.97347         0.00485         0.79028         0.54591      
+260             0.10724         0.96743         0.00422         0.79744         0.55348      
+270             0.09789         0.97070         0.00440         0.81813         0.53152      
+280             0.10075         0.96800         0.00415         0.83258         0.53500      
+290             0.09081         0.97729         0.00501         0.84235         0.53682      
+300             0.09521         0.97384         0.00461         0.82475         0.56212      
+310             0.09546         0.97364         0.00418         0.80077         0.55515      
+320             0.09071         0.97354         0.00417         0.82302         0.54258      
+330             0.08771         0.97774         0.00423         0.85712         0.52818      
+340             0.09161         0.96773         0.00407         0.82350         0.54242      
+350             0.08368         0.97350         0.00412         0.88688         0.52561      
+360             0.08079         0.98232         0.00452         0.87652         0.54697      
+370             0.08856         0.97175         0.00397         0.87174         0.53333      
+380             0.08362         0.97840         0.00390         0.79884         0.56939      
+390             0.08164         0.97747         0.00379         0.82429         0.56091      
+400             0.08592         0.97723         0.00359         0.79259         0.57030      
+Final train acc (mean/std across restarts so far):
+0.9772 0.0
+Final test acc (mean/std across restarts so far):
+0.5703 0.0
+time for training:  0 -999999999 days, 0:00:00 minutes and 13107 seconds.
+nohup: ignoring input
+/datapool/wildcam/wildcam_subset_denoised/train_43
+== Found 858 items 
+== Found 2 classes
+train environment:  43
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641da0-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641dec-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641ea4-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641edd-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/train_46
+== Found 753 items 
+== Found 2 classes
+train environment:  46
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/59641e0b-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965aa9d-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965ab08-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965ac1c-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/test
+== Found 522 items 
+== Found 2 classes
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858bffe-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858c09a-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858c226-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/585a621c-23d2-11e8-a6a3-ec086b02610b.jpg']
+working with 2 training environments: 
+env['images']:  858
+env['labels']:  858
+env['images']:  753
+env['labels']:  753
+x_test:  522
+y_test:  522
+Using GPU - True
+
+========================================ERM========================================
+{'n_restarts': 1, 'steps': 1001, 'n_classes': 2, 'fc_only': True, 'model_path': './models/', 'transform': {'train': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+), 'test': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+)}, 'loader_tr_args': {'batch_size': 100, 'num_workers': 1}, 'loader_te_args': {'batch_size': 100, 'num_workers': 1}, 'loader_sample_args': {'batch_size': 100, 'num_workers': 1}, 'optimizer_args': {'lr': 0.01, 'l2_regularizer_weight': 0.001, 'penalty_anneal_iters': 0, 'penalty_weight': 0.0}}
+Restart 0
+feature extraction
+step            train nll       train acc       train penalty   test nll        test acc     
+/home/nisha/anaconda3/envs/irm/lib/python3.7/site-packages/torchvision/io/video.py:2: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+0               0.84109         0.30811         0.03086         2.98798         0.25773      
+10              0.41702         0.71978         0.02863         1.40622         0.28136      
+20              0.27117         0.87124         0.00496         1.27053         0.25606      
+30              0.25360         0.88533         0.00776         0.90736         0.34409      
+40              0.22257         0.90022         0.00274         0.89506         0.33879      
+50              0.20724         0.91077         0.00408         0.87777         0.35561      
+60              0.18850         0.92380         0.00500         0.85249         0.39833      
+70              0.17764         0.93144         0.00407         0.89343         0.35773      
+80              0.16881         0.93381         0.00438         0.87391         0.40742      
+90              0.15572         0.94624         0.00574         0.93967         0.36712      
+100             0.15379         0.94716         0.00561         0.88320         0.40803      
+110             0.15331         0.93929         0.00508         0.90228         0.40894      
+120             0.14014         0.95252         0.00506         0.79814         0.47924      
+130             0.14099         0.94981         0.00532         0.85184         0.46152      
+140             0.13479         0.94843         0.00478         0.80045         0.47333      
+150             0.12858         0.95478         0.00525         0.77549         0.50227      
+160             0.12251         0.96105         0.00499         0.80874         0.48409      
+170             0.12567         0.96003         0.00474         0.87945         0.47576      
+180             0.11988         0.95653         0.00484         0.85689         0.49258      
+190             0.12406         0.95890         0.00422         0.77821         0.53697      
+200             0.11580         0.96285         0.00477         0.79126         0.51318      
+210             0.11684         0.95927         0.00487         0.83117         0.53000      
+220             0.11833         0.96021         0.00494         0.77246         0.53909      
+230             0.11393         0.96164         0.00427         0.80690         0.53242      
+240             0.10728         0.96609         0.00459         0.83645         0.52409      
+250             0.10368         0.97347         0.00485         0.79028         0.54591      
+260             0.10724         0.96743         0.00422         0.79744         0.55348      
+270             0.09789         0.97070         0.00440         0.81813         0.53152      
+280             0.10075         0.96800         0.00415         0.83258         0.53500      
+290             0.09081         0.97729         0.00501         0.84235         0.53682      
+300             0.09521         0.97384         0.00461         0.82475         0.56212      
+310             0.09546         0.97364         0.00418         0.80077         0.55515      
+320             0.09071         0.97354         0.00417         0.82302         0.54258      
+330             0.08771         0.97774         0.00423         0.85712         0.52818      
+340             0.09161         0.96773         0.00407         0.82350         0.54242      
+350             0.08368         0.97350         0.00412         0.88688         0.52561      
+360             0.08079         0.98232         0.00452         0.87652         0.54697      
+370             0.08856         0.97175         0.00397         0.87174         0.53333      
+380             0.08362         0.97840         0.00390         0.79884         0.56939      
+390             0.08164         0.97747         0.00379         0.82429         0.56091      
+400             0.08592         0.97723         0.00359         0.79259         0.57030      
+410             0.07979         0.97646         0.00365         0.80218         0.56939      
+420             0.08592         0.97760         0.00374         0.83528         0.54591      
+430             0.07651         0.98176         0.00429         0.79418         0.58288      
+440             0.07579         0.97703         0.00394         0.88419         0.54015      
+450             0.08700         0.97042         0.00379         0.79186         0.58712      
+460             0.08873         0.97115         0.00397         0.85490         0.56273      
+470             0.07640         0.98147         0.00388         0.78742         0.59136      
+480             0.07580         0.97904         0.00352         0.86803         0.54348      
+490             0.07631         0.98091         0.00410         0.85585         0.55788      
+500             0.07252         0.97979         0.00390         0.86203         0.55152      
+510             0.07573         0.97571         0.00295         0.81684         0.57788      
+520             0.08140         0.97495         0.00364         0.84588         0.56864      
+530             0.06966         0.98029         0.00336         0.85348         0.54833      
+540             0.06876         0.98132         0.00336         0.91802         0.53424      
+550             0.07099         0.97667         0.00321         0.90408         0.53667      
+560             0.07388         0.98132         0.00375         0.82712         0.56606      
+570             0.07211         0.97931         0.00351         0.81687         0.56333      
+580             0.07605         0.97845         0.00320         0.86655         0.56682      
+590             0.07035         0.97737         0.00305         0.89889         0.54424      
+600             0.06987         0.97979         0.00312         0.95399         0.52833      
+610             0.06843         0.98431         0.00363         0.89722         0.54167      
+620             0.06580         0.98279         0.00367         0.86329         0.55515      
+630             0.07101         0.97877         0.00306         0.78900         0.58439      
+640             0.06593         0.98375         0.00323         0.90168         0.53076      
+650             0.06471         0.98153         0.00302         0.96975         0.50394      
+660             0.07303         0.97827         0.00313         0.92358         0.52136      
+670             0.06221         0.98231         0.00340         0.97048         0.51227      
+680             0.06994         0.98014         0.00315         1.01209         0.52500      
+690             0.06092         0.98516         0.00378         0.85723         0.56197      
+700             0.06247         0.98307         0.00322         0.86074         0.56424      
+710             0.06970         0.98068         0.00310         0.94762         0.52409      
+720             0.06016         0.98529         0.00377         0.96770         0.52227      
+730             0.06010         0.98146         0.00327         0.90394         0.54167      
+740             0.06199         0.98375         0.00301         1.05819         0.49621      
+750             0.06220         0.98083         0.00290         0.87938         0.55182      
+760             0.06280         0.98293         0.00321         0.98780         0.52500      
+770             0.05879         0.98868         0.00344         0.97370         0.53424      
+780             0.06510         0.98182         0.00329         0.96603         0.53333      
+790             0.05871         0.98543         0.00317         0.88922         0.55076      
+800             0.05738         0.98736         0.00351         0.95143         0.54091      
+810             0.06141         0.98486         0.00311         0.99651         0.51485      
+820             0.05966         0.98522         0.00378         1.02110         0.50394      
+830             0.05781         0.98425         0.00285         0.97779         0.53576      
+840             0.05833         0.98632         0.00346         0.90736         0.55697      
+850             0.05833         0.98452         0.00302         0.92887         0.55515      
+860             0.06172         0.98182         0.00321         0.92792         0.56530      
+870             0.06648         0.97845         0.00279         0.89573         0.54076      
+880             0.06250         0.98293         0.00304         0.91938         0.54167      
+890             0.06309         0.98121         0.00283         1.04802         0.53273      
+900             0.05156         0.98611         0.00334         0.94944         0.53909      
+910             0.05734         0.98278         0.00293         0.89670         0.54909      
+920             0.05253         0.99153         0.00359         1.00122         0.52909      
+930             0.05636         0.98578         0.00304         0.90750         0.56439      
+940             0.05735         0.98250         0.00291         0.98694         0.55091      
+950             0.06825         0.97843         0.00256         0.96255         0.53242      
+960             0.05443         0.98674         0.00326         0.99527         0.52742      
+970             0.06370         0.98319         0.00309         0.96725         0.53076      
+980             0.05497         0.98821         0.00288         1.01589         0.52227      
+990             0.06338         0.98302         0.00301         0.92542         0.54485      
+1000            0.05215         0.98813         0.00311         0.98731         0.53591      
+Final train acc (mean/std across restarts so far):
+0.9881 0.0
+Final test acc (mean/std across restarts so far):
+0.5359 0.0
+time for training:  0 -999999999 days, 0:00:00 minutes and 33600 seconds.

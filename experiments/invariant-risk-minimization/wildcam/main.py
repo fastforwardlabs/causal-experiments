@@ -19,7 +19,7 @@ dataset_path = '/datapool/wildcam/wildcam_subset_denoised'
 args_pool = {
     'WILDCAM': {
         'n_restarts': 1,
-        'steps': 101,
+        'steps': 1501,
         'n_classes': 2,
         'fc_only': True,
         'model_path': "./models/",
@@ -48,8 +48,8 @@ args_pool = {
         'optimizer_args': {
             'lr': 0.01,
             'l2_regularizer_weight': 0.001,
-            'penalty_anneal_iters': 0, # make this 0 for ERM
-            'penalty_weight': 0.0 # make this 0 for ERM
+            'penalty_anneal_iters': 401, # make this 0 for ERM
+            'penalty_weight': 10000.0 # make this 0 for ERM
         }
     }
 }
