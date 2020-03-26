@@ -7,6 +7,8 @@ import mlflow
 from torch import autograd
 from torch.utils.data import DataLoader
 from collections import Counter
+
+from sklearn.metrics import precision_recall_fscore_support, confusion_matrix, accuracy_score, f1_score, precision_score, recall_score, fbeta_score, roc_curve, auc, roc_auc_score
     
 def pretty_print(*values):
     col_width = 13
@@ -37,7 +39,7 @@ class Train:
 
     def mean_accuracy(self, logits, y):
         preds = (logits > 0.).float()
-        return ((preds - y).abs() < 1e-2).float().mean()
+        return ((preds - y).abs() < 1e-2).float().mean(), preds
 
     def penalty(self, logits, y):
         scale = torch.tensor(1.).cuda().requires_grad_()
@@ -52,13 +54,14 @@ class Train:
         self.clf.eval()
         total_loss = nll = acc = 0.0
         preds = torch.zeros(len(Y), 1, dtype=torch.float)
+        preds_Y = torch.zeros(len(Y), 1, dtype=torch.float)
         with torch.no_grad():
             for x, y, idxs in loader_te:
                 x, y = x.to(self.device), y.to(self.device)
                 out = self.clf(x)
                 y.resize_((y.shape[0], 1))
                 train_nll = self.mean_nll(out, y.float())
-                train_acc = self.mean_accuracy(out, y.float())
+                train_acc, temp_preds = self.mean_accuracy(out, y.float())
                 
                 nll += train_nll
                 acc += train_acc
@@ -66,8 +69,10 @@ class Train:
                 probs = torch.sigmoid(out)
                 if str(self.device) == 'cuda':
                     preds[idxs] = probs.cpu()
+                    preds_Y[idxs] = temp_preds.cpu()
                 else:
                     preds[idxs] = probs           
+                    preds_Y[idxs] = temp_preds
         '''
         Traditional way of calculating accuracy, getting probs and then using a threshold. 
         Doesn't quite work the way it should or may be the results are bad with 0.5 threshold
@@ -76,7 +81,7 @@ class Train:
         predicted_vals = (preds >= 0.5).long()        
         predicted_acc = ((preds - Y).abs() < 1e-2).float().mean()
 
-        return predicted_acc, nll/len(loader_te), acc/len(loader_te)     
+        return predicted_acc, nll/len(loader_te), acc/len(loader_te), preds_Y, preds     
 
     def train(self):        
         n_classes = self.args['n_classes']
@@ -89,7 +94,7 @@ class Train:
             optimizer = optim.Adam(self.clf.parameters(), self.args['optimizer_args']['lr'])
             #optimizer = optim.SGD(self.clf.parameters(), self.args['optimizer_args']['lr'])
         
-        pretty_print('step', 'train nll', 'train acc', 'train penalty', 'test nll', 'test acc')
+        pretty_print('step', 'train nll', 'train acc', 'train penalty', 'test nll', 'test acc', 'test prec', 'test rec')
 
         for step in range(self.args['steps']):  
             for env_idx, env in enumerate(self.envs):
@@ -99,6 +104,7 @@ class Train:
                                        shuffle=True, **self.args['loader_tr_args'])
                 self.clf.train()
                 nll = acc = penalty = 0.0
+                
                 for batch_idx, (x, y, idxs) in enumerate(loader_tr):
                     x, y = x.to(self.device), y.to(self.device)
                     optimizer.zero_grad()
@@ -106,7 +112,7 @@ class Train:
             
                     y.resize_((y.shape[0], 1))
                     train_nll = self.mean_nll(logits, y.float())
-                    train_acc = self.mean_accuracy(logits, y.float())
+                    train_acc, _ = self.mean_accuracy(logits, y.float())
                     train_penalty = self.penalty(logits, y.float())
                     
                     nll += train_nll
@@ -146,7 +152,11 @@ class Train:
             loss.backward()
             optimizer.step()
             
-            _, test_loss, test_acc = self.predict(self.X_te, self.Y_te)            
+            _, test_loss, test_acc, preds, probs = self.predict(self.X_te, self.Y_te)
+            
+            #acc_test = accuracy_score(self.Y_te.detach().cpu().numpy(), preds.detach().cpu().numpy())
+            test_prec = precision_score(self.Y_te.detach().cpu().numpy(), preds.detach().cpu().numpy())
+            test_rec = recall_score(self.Y_te.detach().cpu().numpy(), preds.detach().cpu().numpy())
            
             mlflow.log_metrics({
                 'train_loss': train_nll.item(),
@@ -159,6 +169,7 @@ class Train:
             if step % 10 == 0:
                 pretty_print(np.int32(step), train_nll.detach().cpu().numpy(), 
                              train_acc.detach().cpu().numpy(), train_penalty.detach().cpu().numpy(), 
-                             test_loss.detach().cpu().numpy(), test_acc.detach().cpu().numpy())
+                             test_loss.detach().cpu().numpy(), test_acc.detach().cpu().numpy(),
+                             test_prec, test_rec)
                 
-        return train_acc.detach().cpu().numpy(), test_acc.detach().cpu().numpy()
+        return train_acc.detach().cpu().numpy(), test_acc.detach().cpu().numpy(), preds, probs

@@ -1039,3 +1039,215 @@ Final train acc (mean/std across restarts so far):
 Final test acc (mean/std across restarts so far):
 0.5308 0.0
 time for training:  0 -999999999 days, 0:00:00 minutes and 33502 seconds.
+nohup: ignoring input
+/datapool/wildcam/wildcam_subset_denoised/train_43
+== Found 858 items 
+== Found 2 classes
+train environment:  43
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641da0-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641dec-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641ea4-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641edd-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/train_46
+== Found 753 items 
+== Found 2 classes
+train environment:  46
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/59641e0b-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965aa9d-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965ab08-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965ac1c-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/test
+== Found 522 items 
+== Found 2 classes
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858bffe-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858c09a-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858c226-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/585a621c-23d2-11e8-a6a3-ec086b02610b.jpg']
+working with 2 training environments: 
+env['images']:  858
+env['labels']:  858
+env['images']:  753
+env['labels']:  753
+x_test:  522
+y_test:  522
+Using GPU - True
+
+========================================IRM========================================
+{'n_restarts': 1, 'steps': 121, 'n_classes': 2, 'fc_only': True, 'model_path': './models/', 'transform': {'train': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+), 'test': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+)}, 'loader_tr_args': {'batch_size': 100, 'num_workers': 1}, 'loader_te_args': {'batch_size': 100, 'num_workers': 1}, 'loader_sample_args': {'batch_size': 100, 'num_workers': 1}, 'optimizer_args': {'lr': 0.001, 'l2_regularizer_weight': 0.001, 'penalty_anneal_iters': 40, 'penalty_weight': 10000.0}}
+Restart 0
+feature extraction
+step            train nll       train acc       train penalty   test nll        test acc     
+/home/nisha/anaconda3/envs/irm/lib/python3.7/site-packages/torchvision/io/video.py:2: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+0               0.84109         0.30811         0.03086         0.82450         0.26864      
+10              0.53936         0.68165         0.00364         0.95835         0.27970      
+20              0.41672         0.79612         0.01646         0.84358         0.26439      
+30              0.36414         0.81310         0.00926         0.84305         0.29652      
+40              0.32607         0.85530         0.00997         0.73838         0.34045      
+50              0.31346         0.85562         0.00777         0.71546         0.39227      
+60              0.30803         0.86706         0.00707         0.70202         0.41152      
+70              0.30712         0.85797         0.00575         0.70929         0.43591      
+80              0.30417         0.86502         0.00445         0.66113         0.51864      
+90              0.31171         0.85788         0.00264         0.62436         0.59439      
+100             0.32642         0.84860         0.00171         0.54132         0.75061      
+110             0.33683         0.84744         0.00287         0.55304         0.75197      
+120             0.33071         0.85032         0.00151         0.52885         0.78712      
+Final train acc (mean/std across restarts so far):
+0.8503 0.0
+Final test acc (mean/std across restarts so far):
+0.7871 0.0
+time for training:  0 -999999999 days, 0:00:00 minutes and 4036 seconds.
+nohup: ignoring input
+/datapool/wildcam/wildcam_subset_denoised/train_43
+== Found 858 items 
+== Found 2 classes
+train environment:  43
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641da0-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641dec-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641ea4-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_43/coyote/59641edd-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/train_46
+== Found 753 items 
+== Found 2 classes
+train environment:  46
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/59641e0b-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965aa9d-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965ab08-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/train_46/raccoon/5965ac1c-23d2-11e8-a6a3-ec086b02610b.jpg']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/test
+== Found 522 items 
+== Found 2 classes
+['/coyote', '/raccoon']
+['/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858bffe-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858c09a-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/5858c226-23d2-11e8-a6a3-ec086b02610b.jpg'
+ '/datapool/wildcam/wildcam_subset_denoised/test/raccoon/585a621c-23d2-11e8-a6a3-ec086b02610b.jpg']
+working with 2 training environments: 
+env['images']:  858
+env['labels']:  858
+env['images']:  753
+env['labels']:  753
+x_test:  522
+y_test:  522
+Using GPU - True
+
+========================================IRM========================================
+{'n_restarts': 1, 'steps': 121, 'n_classes': 2, 'fc_only': True, 'model_path': './models/', 'transform': {'train': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+), 'test': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+)}, 'loader_tr_args': {'batch_size': 100, 'num_workers': 1}, 'loader_te_args': {'batch_size': 100, 'num_workers': 1}, 'loader_sample_args': {'batch_size': 100, 'num_workers': 1}, 'optimizer_args': {'lr': 0.001, 'l2_regularizer_weight': 0.001, 'penalty_anneal_iters': 40, 'penalty_weight': 10000.0}}
+Restart 0
+feature extraction
+step            train nll       train acc       train penalty   test nll        test acc     
+/home/nisha/anaconda3/envs/irm/lib/python3.7/site-packages/torchvision/io/video.py:2: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+0               0.84109         0.30811         0.03086         0.82450         0.26864      
+10              0.53936         0.68165         0.00364         0.95835         0.27970      
+20              0.41672         0.79612         0.01646         0.84358         0.26439      
+30              0.36414         0.81310         0.00926         0.84305         0.29652      
+40              0.32607         0.85530         0.00997         0.73838         0.34045      
+50              0.31346         0.85562         0.00777         0.71546         0.39227      
+60              0.30803         0.86706         0.00707         0.70202         0.41152      
+70              0.30712         0.85797         0.00575         0.70929         0.43591      
+80              0.30417         0.86502         0.00445         0.66113         0.51864      
+90              0.31171         0.85788         0.00264         0.62436         0.59439      
+100             0.32642         0.84860         0.00171         0.54132         0.75061      
+110             0.33683         0.84744         0.00287         0.55304         0.75197      
+120             0.33071         0.85032         0.00151         0.52885         0.78712      
+Final train acc (mean/std across restarts so far):
+0.8503 0.0
+Final test acc (mean/std across restarts so far):
+0.7871 0.0
+time for training:  0 -999999999 days, 0:00:00 minutes and 4006 seconds.
+nohup: ignoring input
+/datapool/wildcam/wildcam_subset_denoised/train_43
+== Found 858 items 
+== Found 2 classes
+train environment:  43
+['/coyote', '/raccoon']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/train_46
+== Found 753 items 
+== Found 2 classes
+train environment:  46
+['/coyote', '/raccoon']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/test
+== Found 522 items 
+== Found 2 classes
+['/coyote', '/raccoon']
+
+working with 2 training environments: 
+env['images']:  858
+env['labels']:  858
+class distribution:  582 coyotes and 276 raccoons. baseline accuracy 0.68 (always coyote).
+env['images']:  753
+env['labels']:  753
+class distribution:  512 coyotes and 241 raccoons. baseline accuracy 0.68 (always coyote).
+x_test:  522
+y_test:  522
+test class distribution:  144 coyotes and 378 raccoons. baseline accuracy 0.72 (always raccoon).
+Using GPU - True
+
+========================================IRM========================================
+{'n_restarts': 1, 'steps': 121, 'n_classes': 2, 'fc_only': True, 'model_path': './models/', 'transform': {'train': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+), 'test': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+)}, 'loader_tr_args': {'batch_size': 100, 'num_workers': 1}, 'loader_te_args': {'batch_size': 100, 'num_workers': 1}, 'loader_sample_args': {'batch_size': 100, 'num_workers': 1}, 'optimizer_args': {'lr': 0.001, 'l2_regularizer_weight': 0.001, 'penalty_anneal_iters': 40, 'penalty_weight': 10000.0}}
+
+Restart 0
+feature extraction
+step            train nll       train acc       train penalty   test nll        test acc        test prec       test rec     
+/home/nisha/anaconda3/envs/irm/lib/python3.7/site-packages/torchvision/io/video.py:2: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+0               0.84109         0.30811         0.03086         0.82450         0.26864         0.56000         0.03704      
+/home/nisha/anaconda3/envs/irm/lib/python3.7/site-packages/sklearn/metrics/_classification.py:1272: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 due to no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+10              0.53936         0.68165         0.00364         0.95835         0.27970         0.00000         0.00000      
+20              0.41672         0.79612         0.01646         0.84358         0.26439         0.64286         0.02381      
+30              0.36414         0.81310         0.00926         0.84305         0.29652         0.60000         0.01587      
+40              0.32607         0.85530         0.00997         0.73838         0.34045         0.72414         0.16667      
+50              0.31346         0.85562         0.00777         0.71546         0.39227         0.75200         0.24868      
+60              0.30803         0.86706         0.00707         0.70202         0.41152         0.75912         0.27513      
+70              0.30712         0.85797         0.00575         0.70929         0.43591         0.76224         0.28836      
+80              0.30417         0.86502         0.00445         0.66113         0.51864         0.80319         0.39947      
+90              0.31171         0.85788         0.00264         0.62436         0.59439         0.81226         0.56085      
+100             0.32642         0.84860         0.00171         0.54132         0.75061         0.83102         0.79365      
+110             0.33683         0.84744         0.00287         0.55304         0.75197         0.83246         0.84127      
+120             0.33071         0.85032         0.00151         0.52885         0.78712         0.83500         0.88360      
+Final train acc (mean/std across restarts so far):
+0.8503 0.0
+Final test acc (mean/std across restarts so far):
+0.7871 0.0
+Final test precision:
+0.835
+Final test recall:
+0.8836
+time for training:  0 -999999999 days, 0:00:00 minutes and 3958 seconds.

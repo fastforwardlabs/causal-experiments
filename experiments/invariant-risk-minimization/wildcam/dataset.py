@@ -106,7 +106,7 @@ def get_WildCam(dataroot, overwrite=False):
         X_tr, Y_tr = create_nparray(dataset_name, dataroot, processedroot, overwrite)
         print("train environment: ", env)
         print(sorted(set(list(Y_tr))))
-        print(X_tr[1:5])
+        #print(X_tr[1:5])
         class_indices = []
         for x in enumerate(sorted(set(list(Y_tr)))):
             class_indices.append(x)
@@ -120,7 +120,7 @@ def get_WildCam(dataroot, overwrite=False):
     
     X_te, Y_te = create_nparray('test', dataroot, processedroot, overwrite)
     print(sorted(set(list(Y_te))))
-    print(X_te[1:5])
+    #print(X_te[1:5])
     # Making sure that the class indices are consistent across train and valid sets
     
     Y_te_upd = np.empty(len(Y_te), dtype=int)
