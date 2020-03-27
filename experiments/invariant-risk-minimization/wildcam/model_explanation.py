@@ -95,7 +95,8 @@ def generate_explanations(images, outfile, num_samples, num_features, seed=123):
 if __name__ == "__main__":
     #model_filename="./models/wildcam_1501_0.001_40_10000.0_IRM.pth"
     #model_filename="./models/wildcam_1501_0.001_0_0.0_ERM.pth"
-    model_filename="./models/wildcam_denoised_121_0.001_40_10000.0_IRM.pth"
+    #model_filename="./models/wildcam_denoised_121_0.001_40_10000.0_IRM.pth"
+    model_filename="./models/wildcam_denoised_121_0.001_0_0.0_ERM.pth"
     net = get_net("WILDCAM")
     model = net(n_classes=2)
     print("loading model")
@@ -106,55 +107,58 @@ if __name__ == "__main__":
     preprocess_transform = get_preprocess_transform()
     '''
     generate_explanations(images = 
-                          [#'../../../data/wildcam_subset_sample/test/coyote/592c4d30-23d2-11e8-a6a3-ec086b02610b.jpg'
-                           '../../../data/wildcam_subset_sample/train_46/coyote/59817c02-23d2-11e8-a6a3-ec086b02610b.jpg'
+                          [
+                              '../../../data/wildcam_subset_denoised/test/coyote/5903ccce-23d2-11e8-a6a3-ec086b02610b.jpg'
+                              #'../../../data/wildcam_subset_denoised/test/coyote/59373454-23d2-11e8-a6a3-ec086b02610b.jpg'
+                              #'../../../data/wildcam_subset_denoised/test/coyote/58adc310-23d2-11e8-a6a3-ec086b02610b.jpg'
+                              #'../../../data/wildcam_subset_denoised/test/coyote/58c7efed-23d2-11e8-a6a3-ec086b02610b.jpg'
                           ], 
                           outfile='./figures/IRM_denoised_coyote_explanation.png', 
                           num_samples=1000, num_features=[10], seed=123)
-    '''
-    
+    '''  
     
     '''
     generate_explanations(images = 
-                          ['../../../data/wildcam_subset_sample/train_46/raccoon/59c669d3-23d2-11e8-a6a3-ec086b02610b.jpg'], 
+                          [
+                              #'../../../data/wildcam_subset_denoised/test/raccoon/593a4e8a-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              #'../../../data/wildcam_subset_denoised/test/raccoon/5879d289-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              #'../../../data/wildcam_subset_denoised/test/raccoon/58629252-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              #'../../../data/wildcam_subset_denoised/test/raccoon/591fd104-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/raccoon/58a8a170-23d2-11e8-a6a3-ec086b02610b.jpg'
+                          ], 
                           outfile='./figures/IRM_denoised_raccoon_explanation.png', 
                           num_samples=1000, num_features=[10], seed=123)
     '''
     
-    
+    '''
     generate_explanations(images = 
-                          ['../../../data/wildcam_subset_sample/train_46/coyote/59817c02-23d2-11e8-a6a3-ec086b02610b.jpg',
-                           '../../../data/wildcam_subset_sample/train_46/coyote/59e77deb-23d2-11e8-a6a3-ec086b02610b.jpg',
-                           '../../../data/wildcam_subset_sample/train_46/raccoon/59c669d3-23d2-11e8-a6a3-ec086b02610b.jpg', 
-                           '../../../data/wildcam_subset_sample/train_43/raccoon/5a14a4aa-23d2-11e8-a6a3-ec086b02610b.jpg',
-                           '../../../data/wildcam_subset_sample/test/raccoon/58d47c71-23d2-11e8-a6a3-ec086b02610b.jpg',
-                           '../../../data/wildcam_subset_sample/test/raccoon/5860f06b-23d2-11e8-a6a3-ec086b02610b.jpg',
-                           '../../../data/wildcam_subset_sample/test/raccoon/58732ea2-23d2-11e8-a6a3-ec086b02610b.jpg',
-                           '../../../data/wildcam_subset_sample/test/raccoon/58a5313e-23d2-11e8-a6a3-ec086b02610b.jpg',
-                           '../../../data/wildcam_subset_sample/test/coyote/592c4d30-23d2-11e8-a6a3-ec086b02610b.jpg',
-                           '../../../data/wildcam_subset_sample/test/coyote/592c4f32-23d2-11e8-a6a3-ec086b02610b.jpg',
-                           '../../../data/wildcam_subset_sample/test/coyote/5858bfd9-23d2-11e8-a6a3-ec086b02610b.jpg',
-                           '../../../data/wildcam_subset_sample/test/coyote/594843d0-23d2-11e8-a6a3-ec086b02610b.jpg'
+                          [
+                              '../../../data/wildcam_subset_denoised/test/coyote/5903ccce-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/coyote/59373454-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/coyote/58c7efed-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/coyote/58adc310-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/raccoon/593a4e8a-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/raccoon/5879d289-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/raccoon/58629252-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/raccoon/591fd104-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/raccoon/58a8a170-23d2-11e8-a6a3-ec086b02610b.jpg'
                            ], 
                           outfile='./figures/IRM_denoised_results.png', 
-                          num_samples=1000, num_features=[5, 10, 10, 15, 5, 10, 15, 10, 15, 10, 10, 10], seed=123)
-    
-    
+                          num_samples=1000, num_features=[10, 10, 10, 10, 20, 10, 5, 20, 10], seed=123)    
     '''
+    
     generate_explanations(images = 
-                          ['../../../data/wildcam_subset_sample/train_46/coyote/59817c02-23d2-11e8-a6a3-ec086b02610b.jpg',
-                           '../../../data/wildcam_subset_sample/train_46/coyote/59e77deb-23d2-11e8-a6a3-ec086b02610b.jpg',
-                           '../../../data/wildcam_subset_sample/train_46/raccoon/59c669d3-23d2-11e8-a6a3-ec086b02610b.jpg', 
-                           '../../../data/wildcam_subset_sample/train_43/raccoon/5a14a4aa-23d2-11e8-a6a3-ec086b02610b.jpg',
-                           '../../../data/wildcam_subset_sample/test/raccoon/58d47c71-23d2-11e8-a6a3-ec086b02610b.jpg',
-                           '../../../data/wildcam_subset_sample/test/raccoon/5860f06b-23d2-11e8-a6a3-ec086b02610b.jpg',
-                           '../../../data/wildcam_subset_sample/test/raccoon/58732ea2-23d2-11e8-a6a3-ec086b02610b.jpg',
-                           '../../../data/wildcam_subset_sample/test/raccoon/58a5313e-23d2-11e8-a6a3-ec086b02610b.jpg',
-                           '../../../data/wildcam_subset_sample/test/coyote/592c4d30-23d2-11e8-a6a3-ec086b02610b.jpg',
-                           '../../../data/wildcam_subset_sample/test/coyote/592c4f32-23d2-11e8-a6a3-ec086b02610b.jpg',
-                           '../../../data/wildcam_subset_sample/test/coyote/5858bfd9-23d2-11e8-a6a3-ec086b02610b.jpg',
-                           '../../../data/wildcam_subset_sample/test/coyote/594843d0-23d2-11e8-a6a3-ec086b02610b.jpg'
+                          [
+                              '../../../data/wildcam_subset_denoised/test/coyote/5903ccce-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/coyote/59373454-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/coyote/58c7efed-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/coyote/58adc310-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/raccoon/593a4e8a-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/raccoon/5879d289-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/raccoon/58629252-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/raccoon/591fd104-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/raccoon/58a8a170-23d2-11e8-a6a3-ec086b02610b.jpg'
                           ], 
                           outfile='./figures/ERM_denoised_results.png', 
-                          num_samples=1000, num_features=[5, 10, 10, 15, 5, 10, 15, 10, 15, 10, 10, 10], seed=123)
-    '''
+                          num_samples=1000, num_features=[10, 10, 10, 10, 20, 10, 5, 20, 10], seed=123)
+    

@@ -50,8 +50,8 @@ args_pool = {
         'optimizer_args': {
             'lr': 0.001,
             'l2_regularizer_weight': 0.001,
-            'penalty_anneal_iters': 40, # make this 0 for ERM
-            'penalty_weight': 10000.0 # make this 0 for ERM
+            'penalty_anneal_iters': 0, # make this 0 for ERM
+            'penalty_weight': 0.0 # make this 0 for ERM
         }
     }
 }
@@ -133,11 +133,11 @@ with mlflow.start_run():
     
         with mlflow.start_run(nested=True):
             train_acc, test_acc, preds, probs = train_process.train()
-            test_prec = precision_score(y_test, preds.detach().cpu().numpy())
-            test_rec = recall_score(y_test, preds.detach().cpu().numpy())
+            preds = torch.reshape(preds, (-1,)).long().detach().cpu().numpy()
+            test_prec = precision_score(y_test, preds)
+            test_rec = recall_score(y_test, preds)
             fpr, tpr, thresholds = roc_curve(y_test, probs)
             roc_auc = roc_auc_score(y_test, probs)
-
 
     final_train_accs.append(train_acc)
     final_test_accs.append(test_acc)
@@ -157,8 +157,15 @@ with mlflow.start_run():
     print(round(test_prec, 4))
     print('Final test recall:')
     print(round(test_rec, 4))
+    
+    #y = np.where(y_test.numpy() == 0, 'coyote', 'raccoon')
+    #y_hat = np.where(preds == 0, 'coyote', 'raccoon')
+    print('confusion matrix:')
+    print(confusion_matrix(y_test.numpy(), preds))
+    tn, fp, fn, tp = confusion_matrix(y_test.numpy(), preds).ravel() #, labels=["coyote", "raccoon"]).ravel()
+    print(f'tn = {tn}, fp = {fp}, fn = {fn}, tp = {tp}')
         
-    plt.figure(constrained_layout=True, figsize=(5, 5))
+    plt.figure(constrained_layout=True, figsize=(3, 3))
 
     # Plot ROC curve
     plt.plot(fpr, tpr, label='ROC curve (area = %0.2f)' % roc_auc)

@@ -1577,3 +1577,77 @@ Final test precision:
 Final test recall:
 0.0899
 time for training:  0 -999999999 days, 0:00:00 minutes and 3963 seconds.
+nohup: ignoring input
+/datapool/wildcam/wildcam_subset_denoised/train_43
+== Found 858 items 
+== Found 2 classes
+train environment:  43
+['/coyote', '/raccoon']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/train_46
+== Found 753 items 
+== Found 2 classes
+train environment:  46
+['/coyote', '/raccoon']
+class_indices:  [(0, '/coyote'), (1, '/raccoon')]
+/datapool/wildcam/wildcam_subset_denoised/test
+== Found 522 items 
+== Found 2 classes
+['/coyote', '/raccoon']
+
+working with 2 training environments: 
+env['images']:  858
+env['labels']:  858
+class distribution:  582 coyotes and 276 raccoons. baseline accuracy 0.68 (always coyote).
+env['images']:  753
+env['labels']:  753
+class distribution:  512 coyotes and 241 raccoons. baseline accuracy 0.68 (always coyote).
+x_test:  522
+y_test:  522
+test class distribution:  144 coyotes and 378 raccoons. baseline accuracy 0.72 (always raccoon).
+Using GPU - True
+
+========================================ERM========================================
+{'n_restarts': 1, 'steps': 121, 'n_classes': 2, 'fc_only': True, 'model_path': './models/', 'transform': {'train': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+), 'test': Compose(
+    CenterCrop(size=(224, 224))
+    ToTensor()
+    Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+)}, 'loader_tr_args': {'batch_size': 100, 'num_workers': 1}, 'loader_te_args': {'batch_size': 100, 'num_workers': 1}, 'loader_sample_args': {'batch_size': 100, 'num_workers': 1}, 'optimizer_args': {'lr': 0.001, 'l2_regularizer_weight': 0.001, 'penalty_anneal_iters': 0, 'penalty_weight': 0.0}}
+
+Restart 0
+feature extraction
+step            train nll       train acc       train penalty   test nll        test acc        test prec       test rec     
+/home/nisha/anaconda3/envs/irm/lib/python3.7/site-packages/torchvision/io/video.py:2: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+0               0.84109         0.30811         0.03086         0.82358         0.27030         0.57692         0.03968      
+/home/nisha/anaconda3/envs/irm/lib/python3.7/site-packages/sklearn/metrics/_classification.py:1272: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 due to no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+10              0.53875         0.68165         0.00373         1.01078         0.28136         0.00000         0.00000      
+20              0.40676         0.83993         0.02134         0.74643         0.35470         0.73404         0.18254      
+30              0.34476         0.84455         0.01158         0.78440         0.31485         0.65854         0.07143      
+40              0.31410         0.86211         0.00906         0.73021         0.36136         0.74000         0.19577      
+50              0.29643         0.86304         0.00719         0.79445         0.31712         0.73585         0.10317      
+60              0.28198         0.87876         0.00734         0.76883         0.34985         0.73611         0.14021      
+70              0.27120         0.88437         0.00647         0.82924         0.30530         0.74510         0.10053      
+80              0.25896         0.89334         0.00640         0.83741         0.30636         0.72727         0.06349      
+90              0.25007         0.89584         0.00613         0.85735         0.29530         0.74359         0.07672      
+100             0.24391         0.90644         0.00642         0.85584         0.29879         0.71875         0.06085      
+110             0.24329         0.90013         0.00627         0.89924         0.29288         0.75000         0.05556      
+120             0.22802         0.91300         0.00661         0.83968         0.33152         0.75556         0.08995      
+Final train acc (mean/std across restarts so far):
+0.913 0.0
+Final test acc (mean/std across restarts so far):
+0.3315 0.0
+Final test precision:
+0.7556
+Final test recall:
+0.0899
+confusion matrix:
+[[133  11]
+ [344  34]]
+tn = 133, fp = 11, fn = 344, tp = 34
+time for training:  0 -999999999 days, 0:00:00 minutes and 3949 seconds.
