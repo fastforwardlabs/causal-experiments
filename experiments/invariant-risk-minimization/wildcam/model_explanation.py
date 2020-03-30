@@ -108,14 +108,31 @@ if __name__ == "__main__":
     '''
     generate_explanations(images = 
                           [
-                              '../../../data/wildcam_subset_denoised/test/coyote/5903ccce-23d2-11e8-a6a3-ec086b02610b.jpg'
+                              #'../../../data/wildcam_subset_denoised/test/coyote/5903ccce-23d2-11e8-a6a3-ec086b02610b.jpg'
                               #'../../../data/wildcam_subset_denoised/test/coyote/59373454-23d2-11e8-a6a3-ec086b02610b.jpg'
                               #'../../../data/wildcam_subset_denoised/test/coyote/58adc310-23d2-11e8-a6a3-ec086b02610b.jpg'
                               #'../../../data/wildcam_subset_denoised/test/coyote/58c7efed-23d2-11e8-a6a3-ec086b02610b.jpg'
+                              #'../../../data/wildcam_subset_denoised/test/coyote/59279c0b-23d2-11e8-a6a3-ec086b02610b.jpg'
+                              #'../../../data/wildcam_subset_denoised/test/coyote/5903cc2e-23d2-11e8-a6a3-ec086b02610b.jpg'
+                              '../../../data/wildcam_subset_denoised/test/coyote/5865e36a-23d2-11e8-a6a3-ec086b02610b.jpg'
                           ], 
                           outfile='./figures/IRM_denoised_coyote_explanation.png', 
                           num_samples=1000, num_features=[10], seed=123)
-    '''  
+    '''
+    '''
+    generate_explanations(images = 
+                          [
+                              #'../../../data/wildcam_subset_denoised/test/coyote/5903ccce-23d2-11e8-a6a3-ec086b02610b.jpg'
+                              #'../../../data/wildcam_subset_denoised/test/coyote/59373454-23d2-11e8-a6a3-ec086b02610b.jpg'
+                              #'../../../data/wildcam_subset_denoised/test/coyote/58adc310-23d2-11e8-a6a3-ec086b02610b.jpg'
+                              #'../../../data/wildcam_subset_denoised/test/coyote/58c7efed-23d2-11e8-a6a3-ec086b02610b.jpg'
+                              #'../../../data/wildcam_subset_denoised/test/coyote/59279c0b-23d2-11e8-a6a3-ec086b02610b.jpg'
+                              #'../../../data/wildcam_subset_denoised/test/coyote/5903cc2e-23d2-11e8-a6a3-ec086b02610b.jpg'
+                              '../../../data/wildcam_subset_denoised/test/coyote/5865e36a-23d2-11e8-a6a3-ec086b02610b.jpg'
+                          ], 
+                          outfile='./figures/ERM_denoised_coyote_explanation.png', 
+                          num_samples=1000, num_features=[10], seed=123)
+    '''
     
     '''
     generate_explanations(images = 
@@ -124,12 +141,32 @@ if __name__ == "__main__":
                               #'../../../data/wildcam_subset_denoised/test/raccoon/5879d289-23d2-11e8-a6a3-ec086b02610b.jpg',
                               #'../../../data/wildcam_subset_denoised/test/raccoon/58629252-23d2-11e8-a6a3-ec086b02610b.jpg',
                               #'../../../data/wildcam_subset_denoised/test/raccoon/591fd104-23d2-11e8-a6a3-ec086b02610b.jpg',
-                              '../../../data/wildcam_subset_denoised/test/raccoon/58a8a170-23d2-11e8-a6a3-ec086b02610b.jpg'
+                              #'../../../data/wildcam_subset_denoised/test/raccoon/58a8a170-23d2-11e8-a6a3-ec086b02610b.jpg'
+                              #'../../../data/wildcam_subset_denoised/test/raccoon/5892b697-23d2-11e8-a6a3-ec086b02610b.jpg'
+                              #'../../../data/wildcam_subset_denoised/test/raccoon/58e40d0c-23d2-11e8-a6a3-ec086b02610b.jpg'
+                              '../../../data/wildcam_subset_denoised/test/raccoon/58e2820f-23d2-11e8-a6a3-ec086b02610b.jpg'
                           ], 
                           outfile='./figures/IRM_denoised_raccoon_explanation.png', 
-                          num_samples=1000, num_features=[10], seed=123)
-    '''
+                          num_samples=1000, num_features=[20], seed=123)
     
+    '''
+    '''
+    generate_explanations(images = 
+                          [
+                              #'../../../data/wildcam_subset_denoised/test/raccoon/593a4e8a-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              #'../../../data/wildcam_subset_denoised/test/raccoon/5879d289-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              #'../../../data/wildcam_subset_denoised/test/raccoon/58629252-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              #'../../../data/wildcam_subset_denoised/test/raccoon/591fd104-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              #'../../../data/wildcam_subset_denoised/test/raccoon/58a8a170-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              #'../../../data/wildcam_subset_denoised/test/raccoon/5892b697-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              #'../../../data/wildcam_subset_denoised/test/raccoon/58af7610-23d2-11e8-a6a3-ec086b02610b.jpg'
+                              #'../../../data/wildcam_subset_denoised/test/raccoon/58e40d0c-23d2-11e8-a6a3-ec086b02610b.jpg'
+                              '../../../data/wildcam_subset_denoised/test/raccoon/58732ea2-23d2-11e8-a6a3-ec086b02610b.jpg'
+                          ], 
+                          outfile='./figures/ERM_denoised_raccoon_explanation.png', 
+                          num_samples=1000, num_features=[20], seed=123)
+    
+    '''
     '''
     generate_explanations(images = 
                           [
@@ -137,14 +174,19 @@ if __name__ == "__main__":
                               '../../../data/wildcam_subset_denoised/test/coyote/59373454-23d2-11e8-a6a3-ec086b02610b.jpg',
                               '../../../data/wildcam_subset_denoised/test/coyote/58c7efed-23d2-11e8-a6a3-ec086b02610b.jpg',
                               '../../../data/wildcam_subset_denoised/test/coyote/58adc310-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/coyote/59279c0b-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/coyote/5903cc2e-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/coyote/5865e36a-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              
                               '../../../data/wildcam_subset_denoised/test/raccoon/593a4e8a-23d2-11e8-a6a3-ec086b02610b.jpg',
                               '../../../data/wildcam_subset_denoised/test/raccoon/5879d289-23d2-11e8-a6a3-ec086b02610b.jpg',
                               '../../../data/wildcam_subset_denoised/test/raccoon/58629252-23d2-11e8-a6a3-ec086b02610b.jpg',
                               '../../../data/wildcam_subset_denoised/test/raccoon/591fd104-23d2-11e8-a6a3-ec086b02610b.jpg',
-                              '../../../data/wildcam_subset_denoised/test/raccoon/58a8a170-23d2-11e8-a6a3-ec086b02610b.jpg'
+                              '../../../data/wildcam_subset_denoised/test/raccoon/58a8a170-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/raccoon/58e40d0c-23d2-11e8-a6a3-ec086b02610b.jpg'
                            ], 
                           outfile='./figures/IRM_denoised_results.png', 
-                          num_samples=1000, num_features=[10, 10, 10, 10, 20, 10, 5, 20, 10], seed=123)    
+                          num_samples=1000, num_features=[10, 10, 10, 10, 10, 5, 10, 20, 10, 5, 20, 10, 20], seed=123)    
     '''
     
     generate_explanations(images = 
@@ -153,12 +195,17 @@ if __name__ == "__main__":
                               '../../../data/wildcam_subset_denoised/test/coyote/59373454-23d2-11e8-a6a3-ec086b02610b.jpg',
                               '../../../data/wildcam_subset_denoised/test/coyote/58c7efed-23d2-11e8-a6a3-ec086b02610b.jpg',
                               '../../../data/wildcam_subset_denoised/test/coyote/58adc310-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/coyote/59279c0b-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/coyote/5903cc2e-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/coyote/5865e36a-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              
                               '../../../data/wildcam_subset_denoised/test/raccoon/593a4e8a-23d2-11e8-a6a3-ec086b02610b.jpg',
                               '../../../data/wildcam_subset_denoised/test/raccoon/5879d289-23d2-11e8-a6a3-ec086b02610b.jpg',
                               '../../../data/wildcam_subset_denoised/test/raccoon/58629252-23d2-11e8-a6a3-ec086b02610b.jpg',
                               '../../../data/wildcam_subset_denoised/test/raccoon/591fd104-23d2-11e8-a6a3-ec086b02610b.jpg',
-                              '../../../data/wildcam_subset_denoised/test/raccoon/58a8a170-23d2-11e8-a6a3-ec086b02610b.jpg'
+                              '../../../data/wildcam_subset_denoised/test/raccoon/58a8a170-23d2-11e8-a6a3-ec086b02610b.jpg',
+                              '../../../data/wildcam_subset_denoised/test/raccoon/58e40d0c-23d2-11e8-a6a3-ec086b02610b.jpg'
                           ], 
                           outfile='./figures/ERM_denoised_results.png', 
-                          num_samples=1000, num_features=[10, 10, 10, 10, 20, 10, 5, 20, 10], seed=123)
+                          num_samples=1000, num_features=[10, 10, 10, 10, 10, 5, 10, 20, 10, 5, 20, 10, 20], seed=123)
     
