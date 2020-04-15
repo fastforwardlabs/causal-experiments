@@ -17,7 +17,9 @@ from dataset import get_dataset, get_handler
 
 from lime import lime_image
 
-
+import sys
+np.set_printoptions(threshold=sys.maxsize)
+np.set_printoptions(threshold=np.inf)
 # config
 
 IRM_MODEL_PATH = 'models/wildcam_denoised_121_0.001_40_10000.0_IRM.pth'
@@ -29,6 +31,8 @@ DATASET_PATH = '/datapool/wildcam/wildcam_subset_denoised'
 
 
 # data
+'''
+'''
 
 transform = transforms.Compose([
     transforms.Resize((256, 256)),
@@ -129,13 +133,18 @@ def myconverter(obj):
 output = [] 
 
 for idx, (x, y, _) in enumerate(loader):
-    if idx < 10:
+    if idx < 1:
         path = x_all[idx].replace(DATASET_PATH, '')
         label = 'raccoon' if y_all[idx] else 'coyote'
 
         #logit_irm, prob_irm, pred_irm  = predictions(irm_model, x, y)
         #logit_erm, prob_erm, pred_erm  = predictions(erm_model, x, y)
-        
+        pil_image = np.array(pill_transf(get_image(x_all[idx])))
+        print(f'PIL image Min: {pil_image.min()}, Max: {pil_image.max()}')
+
+        tensor_image = np.array(x[0])
+        print(f'tensor image normalized Min: {tensor_image.min()}, Max: {tensor_image.max()}')
+       
         #convert to numpy
         img_numpy = np.array(x[0].permute(1, 2, 0))
 
