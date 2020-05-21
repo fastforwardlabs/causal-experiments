@@ -25,7 +25,7 @@ from skimage.segmentation import mark_boundaries
 
 IRM_MODEL_PATH = 'models/wildcam_denoised_121_0.001_40_10000.0_IRM.pth'
 ERM_MODEL_PATH = 'models/wildcam_denoised_121_0.001_0_0.0_ERM.pth'
-OUTPUT_FILE = 'output.json'
+OUTPUT_FILE = 'output_wo_explanations.json'
 
 DATASET_NAME = 'WILDCAM'
 DATASET_PATH = '/datapool/wildcam/wildcam_subset_denoised'
@@ -45,10 +45,10 @@ envs, x_test, y_test = get_dataset(DATASET_NAME, DATASET_PATH, overwrite=False)
 x_env_0, y_env_0 = envs[0]['images'], envs[0]['labels']
 x_env_1, y_env_1 = envs[1]['images'], envs[1]['labels']
 
-#x_all = np.concatenate([x_env_0, x_env_1, x_test])
-#y_all = np.concatenate([x_env_0, y_env_1, y_test])
-x_all = x_test
-y_all = y_test
+x_all = np.concatenate([x_env_0, x_env_1, x_test])
+y_all = np.concatenate([x_env_0, y_env_1, y_test])
+#x_all = x_test
+#y_all = y_test
 
 n_data = len(x_all)
 
@@ -118,50 +118,52 @@ def myconverter(obj):
 
 output = [] 
 num_samples = 10
-fig = plt.figure(constrained_layout=True, figsize=(5, 20))
-spec = gridspec.GridSpec(ncols=2, nrows=num_samples, figure=fig)
-i=0
+#fig = plt.figure(constrained_layout=True, figsize=(5, 20))
+#spec = gridspec.GridSpec(ncols=2, nrows=num_samples, figure=fig)
+#i=0
 
 for idx, (x, y, _) in enumerate(loader):
-    if idx < num_samples:        
-        path = x_all[idx].replace(DATASET_PATH, '')
-        label = 'raccoon' if y_all[idx] else 'coyote'
+    #if idx < num_samples:        
+    path = x_all[idx].replace(DATASET_PATH, '')
+    label = 'raccoon' if y_all[idx] else 'coyote'
 
-        # image that will be shown to the user, this is also needed by the LIME api
-        pil_image = np.array(pill_transf(get_image(x_all[idx])))
+    # image that will be shown to the user, this is also needed by the LIME api
+    pil_image = np.array(pill_transf(get_image(x_all[idx])))
         
-        clf = irm_model
-        probs_irm = batch_predict([pill_transf(get_image(x_all[idx]))])  
+    clf = irm_model
+    probs_irm = batch_predict([pill_transf(get_image(x_all[idx]))])  
         
-        prob_irm = probs_irm[0][1]
-        pred_irm = 'raccoon' if (prob_irm >= 0.5) else 'coyote'
-        # use probability of the predicted class
-        if pred_irm == 'coyote':
-            prob_irm = 1 - prob_irm
-
-        irm_explainer = lime_image.LimeImageExplainer(feature_selection='highest_weights', verbose=False, random_state=123)
-        irm_explanation = irm_explainer.explain_instance(pil_image, #this cannot be a tensor and has to be [H, W, C]
+    prob_irm = probs_irm[0][1]
+    pred_irm = 'raccoon' if (prob_irm >= 0.5) else 'coyote'
+    # use probability of the predicted class
+    if pred_irm == 'coyote':
+        prob_irm = 1 - prob_irm
+    '''
+    irm_explainer = lime_image.LimeImageExplainer(feature_selection='highest_weights', verbose=False, random_state=123)
+    irm_explanation = irm_explainer.explain_instance(pil_image, #this cannot be a tensor and has to be [H, W, C]
                                          batch_predict, # classification function
                                          top_labels=1, 
                                          hide_color=0, 
                                          num_samples=1000, # number of images that will be sent to classification function
                                          random_seed=123) 
-
-        clf = erm_model
-        probs_erm = batch_predict([pill_transf(get_image(x_all[idx]))])
-        prob_erm = probs_erm[0][1]
-        pred_erm = 'raccoon' if (prob_erm >= 0.5) else 'coyote'
-        # use probability of the predicted class
-        if pred_erm == 'coyote':
-            prob_erm = 1 - prob_erm
-        erm_explainer = lime_image.LimeImageExplainer(feature_selection='highest_weights', verbose=False, random_state=123)
-        erm_explanation = erm_explainer.explain_instance(pil_image, 
+    '''
+    clf = erm_model
+    probs_erm = batch_predict([pill_transf(get_image(x_all[idx]))])
+    prob_erm = probs_erm[0][1]
+    pred_erm = 'raccoon' if (prob_erm >= 0.5) else 'coyote'
+    # use probability of the predicted class
+    if pred_erm == 'coyote':
+        prob_erm = 1 - prob_erm
+    '''
+    erm_explainer = lime_image.LimeImageExplainer(feature_selection='highest_weights', verbose=False, random_state=123)
+    erm_explanation = erm_explainer.explain_instance(pil_image, 
                                          batch_predict, # classification function
                                          top_labels=1, 
                                          hide_color=0, 
                                          num_samples=1000, # number of images that will be sent to classification function
                                          random_seed=123) 
-
+    '''
+    '''
         irm_temp, irm_mask = irm_explanation.get_image_and_mask(irm_explanation.top_labels[0], 
                                             positive_only=True, negative_only=False, 
                                             num_features=5, hide_rest=False)
@@ -179,32 +181,32 @@ for idx, (x, y, _) in enumerate(loader):
         f_ax2.imshow(erm_img_boundary)
 
         i += 1
+    '''
+    output.append({
+        'image_path': path,
+        'label': label,
+        #'image': pil_image, # resized & cropped image
+        'irm': {
+            'prob':  prob_irm.item(),
+            'prediction': pred_irm,
+            #'segments': irm_explanation.segments,
+            #'coefficients': list(irm_explanation.local_exp.values())[0],
+            #'lime_prob': irm_explanation.local_pred[0]
+        },
+        'erm': {
+            'prob':  prob_erm.item(),
+            'prediction': pred_erm,
+            #'segments': erm_explanation.segments.tolist(),
+            #'coefficients': list(erm_explanation.local_exp.values())[0],
+            #'lime_prob': erm_explanation.local_pred[0]
+        }
+    })
 
-        output.append({
-            'image_path': path,
-            'label': label,
-            'image': pil_image, # resized & cropped image
-            'irm': {
-                'prob':  prob_irm.item(),
-                'prediction': pred_irm,
-                'segments': irm_explanation.segments,
-                'coefficients': list(irm_explanation.local_exp.values())[0],
-                'lime_prob': irm_explanation.local_pred[0]
-            },
-            'erm': {
-                'prob':  prob_erm.item(),
-                'prediction': pred_erm,
-                'segments': erm_explanation.segments.tolist(),
-                'coefficients': list(erm_explanation.local_exp.values())[0],
-                'lime_prob': erm_explanation.local_pred[0]
-            }
-        })
+    if idx % 100 == 0:
+        print('predicted {} / {} images'.format(idx, n_data))
 
-        if idx % 10 == 0:
-            print('predicted {} / {} images'.format(idx, n_data))
-
-plt.savefig('./figures/predict.png', dpi=300, bbox_inches='tight', pad_inches=0) # To save figure
-plt.show() # To show figure
+#plt.savefig('./figures/predict.png', dpi=300, bbox_inches='tight', pad_inches=0) # To save figure
+#plt.show() # To show figure
 
 # persist
 with open(OUTPUT_FILE, 'w') as f:
