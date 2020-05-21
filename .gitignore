@@ -138,3 +138,14 @@ dmypy.json
 .DS_Store
 /data
 .Rhistory
+
+experiments/invariant-risk-minimization/wildcam/__pycache__
+experiments/invariant-risk-minimization/wildcam/dataset.pyc
+experiments/invariant-risk-minimization/wildcam/model_results_irm2.txt
+experiments/invariant-risk-minimization/wildcam/models
+experiments/invariant-risk-minimization/wildcam/models.pyc
+experiments/invariant-risk-minimization/wildcam/train.pyc
+experiments/invariant-risk-minimization/wildcam/output.json
+experiments/invariant-risk-minimization/wildcam/output_wo_explanations.json
+experiments/invariant-risk-minimization/wildcam/model_results_irm2.txt
+
