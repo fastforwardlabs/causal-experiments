@@ -98,7 +98,6 @@ mkdir ./models
 * models.py - Resnet18 models for feature extraction and/or fine-tuning
 * main.py - entry point - change run parameters and data paths from here
 * train.py - trains with both IRM and ERM approaches
-* main_mnist.py - code from the IRM research paper to test and review stuff
 * /notebooks - exploratory code, mainly to try and test things out. 
 * /models - to save model runs
 
@@ -107,3 +106,5 @@ mkdir ./models
 * model_results.txt - initial model results
 * model_results_irm.txt - documented IRM model iterations
 * model_results_erm.txt - documented ERM model iterations
+
+We are grateful to the IRM authors and Facebook Research for their open [implementation](https://github.com/facebookresearch/InvariantRiskMinimization) ([LICENSE](https://github.com/facebookresearch/InvariantRiskMinimization/blob/master/LICENSE)) of Invariant Risk Minimization.
